@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">WorkoutRoutine</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="body_fragment">Body Fragment</string>
+    <string name="workout_fragment">Workout Fragment</string>
+    <string name="history_fragment">History Fragment</string>
+    <string name="body">Body</string>
+    <string name="workout">Workout</string>
+    <string name="history">History</string>
 </resources>
