@@ -4,7 +4,8 @@ import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.addTo
-import java.util.*
+import java.util.Calendar
+import java.util.Locale
 
 class WorkoutViewModel(
     private val listWorkoutDay: MutableList<WorkoutDay> = mutableListOf()) : ViewModel() {
