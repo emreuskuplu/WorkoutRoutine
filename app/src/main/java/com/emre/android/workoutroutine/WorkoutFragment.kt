@@ -22,16 +22,18 @@ class WorkoutFragment : Fragment() {
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?): View? {
-
         return inflater.inflate(R.layout.fragment_workout, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        val workoutDaysAdapter = WorkoutDaysAdapter(viewModel.getWorkoutDays())
 
         workoutDaysRecyclerView = view.findViewById(R.id.workoutDaysRecyclerView)
-        workoutDaysRecyclerView.layoutManager = layoutManager
-        workoutDaysRecyclerView.adapter = WorkoutDaysAdapter(viewModel.getWorkoutDays(), view)
+        workoutDaysRecyclerView.layoutManager = linearLayoutManager
+        workoutDaysRecyclerView.adapter = workoutDaysAdapter
+
+        viewModel.subscribeWorkoutDayClicks(workoutDaysAdapter.workoutDayClickStream)
     }
 }

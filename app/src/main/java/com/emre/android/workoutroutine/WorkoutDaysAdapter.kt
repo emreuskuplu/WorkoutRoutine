@@ -4,22 +4,22 @@ import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.subjects.PublishSubject
 
 class WorkoutDaysAdapter(
-        private val listWorkoutDay: MutableList<WorkoutDay>,
-        private val view: View) : RecyclerView.Adapter<WorkoutDaysViewHolder>() {
+        private val listWorkoutDay: List<WorkoutDay>) : RecyclerView.Adapter<WorkoutDaysViewHolder>() {
+
+    private val workoutDayClickSubject = PublishSubject.create<Pair<List<WorkoutDay>, Int>>()
+    val workoutDayClickStream: Observable<Pair<List<WorkoutDay>, Int>> = workoutDayClickSubject.hide()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WorkoutDaysViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_workout_day, parent, false)
 
         return WorkoutDaysViewHolder(view) {
-            for (i in 0 until listWorkoutDay.size) {
-                if (listWorkoutDay[i].isSelectedWorkoutDay) {
-                    listWorkoutDay[i].isSelectedWorkoutDay = false
-                }
-            }
-            listWorkoutDay[it].isSelectedWorkoutDay = true
+            workoutDayClickSubject.onNext(listWorkoutDay to it)
             notifyDataSetChanged()
         }
     }
@@ -29,17 +29,29 @@ class WorkoutDaysAdapter(
         holder.workoutDayNameTextView.text = listWorkoutDay[position].workoutDayName
 
         if (listWorkoutDay[position].isSelectedWorkoutDay) {
-            holder.workoutDayNameTextView.visibility = View.VISIBLE
-            holder.workoutDayNumberTextView.setTextColor(view.resources.getColor(R.color.colorSecondary))
-            holder.workoutDayNumberTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25F)
+            changeThemeForSelectedWorkoutDay(holder)
         } else {
-            holder.workoutDayNameTextView.visibility = View.INVISIBLE
-            holder.workoutDayNumberTextView.setTextColor(view.resources.getColor(R.color.white))
-            holder.workoutDayNumberTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F)
+            changeThemeForUnSelectedWorkoutDay(holder)
         }
     }
 
     override fun getItemCount(): Int {
         return listWorkoutDay.size
+    }
+
+    private fun changeThemeForSelectedWorkoutDay(holder: WorkoutDaysViewHolder) {
+        val selectedWorkoutDayColor = ContextCompat.getColor(holder.itemView.context, R.color.colorSecondary)
+
+        holder.workoutDayNameTextView.visibility = View.VISIBLE
+        holder.workoutDayNumberTextView.setTextColor(selectedWorkoutDayColor)
+        holder.workoutDayNumberTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25F)
+    }
+
+    private fun changeThemeForUnSelectedWorkoutDay(holder: WorkoutDaysViewHolder) {
+        val unSelectedWorkoutDayColor = ContextCompat.getColor(holder.itemView.context, R.color.white)
+
+        holder.workoutDayNameTextView.visibility = View.INVISIBLE
+        holder.workoutDayNumberTextView.setTextColor(unSelectedWorkoutDayColor)
+        holder.workoutDayNumberTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F)
     }
 }
