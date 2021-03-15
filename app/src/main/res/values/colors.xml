@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3c3a4b</color>
-    <color name="colorSecondary">#76efca</color>
-    <color name="colorSecondaryVariant">#459f84</color>
-    <color name="colorOnSecondary">#dce4ee</color>
+    <color name="colorPrimary">#459f84</color>
+    <color name="colorPrimaryVariant">#3c3a4b</color>
+    <color name="colorSecondary">#459f84</color>
+    <color name="colorSecondaryVariant">#76efca</color>
     <color name="colorSurface">#4a485d</color>
     <color name="white">#FFFFFFFF</color>
     <color name="darkWhiteColor">#C2FFFFFF</color>
