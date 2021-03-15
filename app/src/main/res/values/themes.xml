@@ -3,9 +3,9 @@
     <style name="Theme.WorkoutRoutine" parent="Theme.MaterialComponents.NoActionBar">
         <!-- Primary brand color. -->
         <!-- The color of the app bar -->
-        <item name="colorPrimary">@color/colorSecondary</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
         <!-- The color of the status bar and contextual app bars -->
-        <item name="colorPrimaryVariant">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
         <!-- Color used for text and icons displayed on top of the primary color -->
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
@@ -14,13 +14,16 @@
         <!-- The secondary variant color is used to distinguish two elements of the app using the secondary color. -->
         <item name="colorSecondaryVariant">@color/colorSecondaryVariant</item>
         <!-- Color used for text and icons displayed on top of the secondary color. -->
-        <item name="colorOnSecondary">@color/colorOnSecondary</item>
+        <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
-        <item name="android:windowBackground">@color/colorPrimary</item>
+        <item name="android:windowBackground">@color/colorPrimaryVariant</item>
         <item name="android:textColor">@color/white</item>
-        <!-- <item name="android:navigationBarColor">@color/colorSurface</item> -->
     </style>
 
+    <style name="ShapeExtendedFloatingActionButton" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">4dp</item>
+    </style>
 </resources>

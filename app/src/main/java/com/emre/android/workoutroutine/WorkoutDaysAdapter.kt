@@ -40,7 +40,7 @@ class WorkoutDaysAdapter(
     }
 
     private fun changeThemeForSelectedWorkoutDay(holder: WorkoutDaysViewHolder) {
-        val selectedWorkoutDayColor = ContextCompat.getColor(holder.itemView.context, R.color.colorSecondary)
+        val selectedWorkoutDayColor = ContextCompat.getColor(holder.itemView.context, R.color.colorSecondaryVariant)
 
         holder.workoutDayNameTextView.visibility = View.VISIBLE
         holder.workoutDayNumberTextView.setTextColor(selectedWorkoutDayColor)
