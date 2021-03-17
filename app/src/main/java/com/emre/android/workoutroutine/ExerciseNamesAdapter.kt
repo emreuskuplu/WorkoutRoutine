@@ -4,14 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class WorkoutAdapter(val exerciseNameList: List<String>) : RecyclerView.Adapter<WorkoutViewHolder>() {
+class ExerciseNamesAdapter(private val exerciseNameList: List<String>) : RecyclerView.Adapter<ExerciseNameViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WorkoutViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_cardview_exercise, parent, false)
-        return WorkoutViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExerciseNameViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_exercise_name, parent, false)
+        return ExerciseNameViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: WorkoutViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ExerciseNameViewHolder, position: Int) {
         holder.exerciseName.text = exerciseNameList[position]
     }
 

@@ -12,11 +12,12 @@ import androidx.recyclerview.widget.RecyclerView
 class WorkoutFragment : Fragment() {
 
     private lateinit var workoutDaysRecyclerView: RecyclerView
-    private lateinit var viewModel: WorkoutViewModel
+    private lateinit var workoutsRecyclerView: RecyclerView
+    private lateinit var workoutViewModel: WorkoutViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(WorkoutViewModel::class.java)
+        workoutViewModel = ViewModelProvider(this).get(WorkoutViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -27,13 +28,27 @@ class WorkoutFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        val workoutDaysAdapter = WorkoutDaysAdapter(viewModel.getWorkoutDays())
+        val linearLayoutManagerHorizontal = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        val linearLayoutManagerVertical = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        val workoutDaysAdapter = WorkoutDaysAdapter(workoutViewModel.getWorkoutDays())
 
-        workoutDaysRecyclerView = view.findViewById(R.id.workoutDaysRecyclerView)
-        workoutDaysRecyclerView.layoutManager = linearLayoutManager
+        val workoutList = mutableListOf<Pair<String, List<String>>>()
+        val list = listOf("Jump rope", "Bodyweight Squats", "Bench Press", "Push Ups")
+
+        for (i in 0..4) {
+            workoutList.add("Strength Workout" to list)
+        }
+
+        val workoutsAdapter = WorkoutsAdapter(workoutList)
+
+        workoutDaysRecyclerView = view.findViewById(R.id.workout_days_recyclerview)
+        workoutDaysRecyclerView.layoutManager = linearLayoutManagerHorizontal
         workoutDaysRecyclerView.adapter = workoutDaysAdapter
 
-        viewModel.subscribeWorkoutDayClicks(workoutDaysAdapter.workoutDayClickStream)
+        workoutsRecyclerView = view.findViewById(R.id.workouts_recyclerview)
+        workoutsRecyclerView.layoutManager = linearLayoutManagerVertical
+        workoutsRecyclerView.adapter = workoutsAdapter
+
+        workoutViewModel.subscribeWorkoutDayClicks(workoutDaysAdapter.workoutDayClickStream)
     }
 }

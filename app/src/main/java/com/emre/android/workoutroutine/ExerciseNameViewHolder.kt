@@ -4,6 +4,6 @@ import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class WorkoutViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class ExerciseNameViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val exerciseName: TextView = itemView.findViewById(R.id.exercise_name)
 }
