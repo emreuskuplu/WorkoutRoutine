@@ -5,7 +5,7 @@
     android:layout_height="66dp">
 
     <TextView
-        android:id="@+id/workoutDay"
+        android:id="@+id/workout_day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/rubik_regular"
@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/workoutDayName"
+        android:id="@+id/workout_day_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -26,6 +26,6 @@
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/workoutDay" />
+        app:layout_constraintTop_toBottomOf="@id/workout_day" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

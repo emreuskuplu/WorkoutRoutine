@@ -6,5 +6,6 @@
     <color name="colorSecondaryVariant">#76efca</color>
     <color name="colorSurface">#4a485d</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="darkWhiteColor">#C2FFFFFF</color>
+    <color name="darkWhite">#C2FFFFFF</color>
+    <color name="workoutCardGreen">#29d9a3</color>
 </resources>
