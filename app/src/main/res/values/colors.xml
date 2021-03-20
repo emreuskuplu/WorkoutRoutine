@@ -8,4 +8,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="darkWhite">#C2FFFFFF</color>
     <color name="workoutCardGreen">#29d9a3</color>
+    <color name="colorMenuItemPressed">#52459f84</color>
 </resources>

@@ -1,7 +1,8 @@
 package com.emre.android.workoutroutine
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
+import android.view.*
+import android.widget.PopupWindow
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -10,7 +11,9 @@ class WorkoutsAdapter(private var workoutList: List<Pair<String, List<String>>>)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WorkoutViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_workout, parent, false)
 
-        return WorkoutViewHolder(view)
+        return WorkoutViewHolder(view) {
+            popupWindow(parent).showAsDropDown(it, -260, -36)
+        }
     }
 
     override fun onBindViewHolder(holder: WorkoutViewHolder, position: Int) {
@@ -26,5 +29,27 @@ class WorkoutsAdapter(private var workoutList: List<Pair<String, List<String>>>)
 
     override fun getItemCount(): Int {
         return workoutList.size
+    }
+
+    private fun popupWindow(parent: ViewGroup): PopupWindow {
+        val popupWindowView = LayoutInflater.from(parent.context).inflate(R.layout.card_popup_window, parent, false)
+        val edit: TextView = popupWindowView.findViewById(R.id.edit)
+        val delete: TextView = popupWindowView.findViewById(R.id.delete)
+        val popupWindow = PopupWindow(parent.context)
+
+        popupWindow.contentView = popupWindowView
+        popupWindow.width = parent.resources.getDimensionPixelSize(R.dimen.card_popup_menu_width)
+        popupWindow.height = parent.resources.getDimensionPixelSize(R.dimen.card_popup_menu_height)
+        popupWindow.isOutsideTouchable = true
+        popupWindow.isFocusable = true
+
+        edit.setOnClickListener {
+            popupWindow.dismiss()
+        }
+        delete.setOnClickListener {
+            popupWindow.dismiss()
+        }
+
+        return popupWindow
     }
 }

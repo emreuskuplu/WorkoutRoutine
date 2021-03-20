@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorSurface"
+    android:orientation="vertical"
+    tools:ignore="Overdraw">
+
+    <TextView
+        android:id="@+id/edit"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/selector_text"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/rubik_regular"
+        android:gravity="center_vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="0dp"
+        android:text="@string/edit"
+        android:drawablePadding="16dp"
+        app:drawableStartCompat="@drawable/ic_edit" />
+
+    <TextView
+        android:id="@+id/delete"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/selector_text"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/rubik_regular"
+        android:gravity="center_vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="0dp"
+        android:text="@string/delete"
+        android:drawablePadding="16dp"
+        app:drawableStartCompat="@drawable/ic_delete"/>
+
+</LinearLayout>

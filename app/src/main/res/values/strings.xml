@@ -7,4 +7,8 @@
     <string name="workout">Workout</string>
     <string name="history">History</string>
     <string name="new_workout">NEW WORKOUT</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="workout_menu">workout menu</string>
+    <string name="workout_navigate">workout navigate</string>
 </resources>
