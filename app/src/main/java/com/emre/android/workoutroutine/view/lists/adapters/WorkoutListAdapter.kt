@@ -1,4 +1,4 @@
-package com.emre.android.workoutroutine
+package com.emre.android.workoutroutine.view.lists.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,8 +6,10 @@ import android.widget.PopupWindow
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.emre.android.workoutroutine.R
+import com.emre.android.workoutroutine.view.lists.viewholders.WorkoutViewHolder
 
-class WorkoutsAdapter(private var workoutList: List<Pair<String, List<String>>>) : RecyclerView.Adapter<WorkoutViewHolder>() {
+class WorkoutListAdapter(private var workoutList: List<Pair<String, List<String>>>) : RecyclerView.Adapter<WorkoutViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WorkoutViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_workout, parent, false)
@@ -20,7 +22,7 @@ class WorkoutsAdapter(private var workoutList: List<Pair<String, List<String>>>)
     override fun onBindViewHolder(holder: WorkoutViewHolder, position: Int) {
         val linearLayoutManagerVertical =
                 LinearLayoutManager(holder.itemView.context, LinearLayoutManager.VERTICAL, false)
-        val exerciseNamesAdapter = ExerciseNamesAdapter(workoutList[position].second)
+        val exerciseNamesAdapter = ExerciseNameListAdapter(workoutList[position].second)
 
         holder.exerciseNamesRecyclerView.layoutManager = linearLayoutManagerVertical
         holder.exerciseNamesRecyclerView.adapter = exerciseNamesAdapter

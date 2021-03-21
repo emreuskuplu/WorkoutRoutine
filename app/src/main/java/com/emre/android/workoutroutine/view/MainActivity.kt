@@ -1,4 +1,4 @@
-package com.emre.android.workoutroutine
+package com.emre.android.workoutroutine.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -6,6 +6,7 @@ import androidx.core.view.get
 import androidx.core.view.size
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.emre.android.workoutroutine.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {

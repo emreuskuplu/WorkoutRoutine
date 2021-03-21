@@ -1,10 +1,12 @@
-package com.emre.android.workoutroutine
+package com.emre.android.workoutroutine.view.lists.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.emre.android.workoutroutine.R
+import com.emre.android.workoutroutine.view.lists.viewholders.ExerciseNameViewHolder
 
-class ExerciseNamesAdapter(private val exerciseNameList: List<String>) : RecyclerView.Adapter<ExerciseNameViewHolder>() {
+class ExerciseNameListAdapter(private val exerciseNameList: List<String>) : RecyclerView.Adapter<ExerciseNameViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExerciseNameViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_exercise_name, parent, false)

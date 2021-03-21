@@ -6,17 +6,17 @@
 
     <fragment
         android:id="@+id/workout_fragment"
-        android:name="com.emre.android.workoutroutine.WorkoutFragment"
+        android:name="com.emre.android.workoutroutine.view.fragments.WorkoutFragment"
         android:label="fragment_workout"
         tools:layout="@layout/fragment_workout" />
     <fragment
         android:id="@+id/body_fragment"
-        android:name="com.emre.android.workoutroutine.BodyFragment"
+        android:name="com.emre.android.workoutroutine.view.fragments.BodyFragment"
         android:label="fragment_body"
         tools:layout="@layout/fragment_body" />
     <fragment
         android:id="@+id/history_fragment"
-        android:name="com.emre.android.workoutroutine.HistoryFragment"
+        android:name="com.emre.android.workoutroutine.view.fragments.HistoryFragment"
         android:label="fragment_history"
         tools:layout="@layout/fragment_history" />
 </navigation>

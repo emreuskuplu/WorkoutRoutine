@@ -8,7 +8,7 @@ import java.util.Calendar
 import java.util.Locale
 
 class WorkoutViewModel(
-    private val listWorkoutDay: MutableList<WorkoutDay> = mutableListOf()) : ViewModel() {
+    private val workoutDayList: MutableList<WorkoutDay> = mutableListOf()) : ViewModel() {
 
     private val disposables = CompositeDisposable()
 
@@ -17,8 +17,8 @@ class WorkoutViewModel(
         disposables.clear()
     }
 
-    fun subscribeWorkoutDayClicks(workoutDayClicks: Observable<Pair<List<WorkoutDay>, Int>>) {
-        workoutDayClicks.subscribe {
+    fun subscribeWorkoutDayClick(workoutDayClickObservable: Observable<Pair<List<WorkoutDay>, Int>>) {
+        workoutDayClickObservable.subscribe {
             val listWorkoutDayFromAdapter = it.first
             val adapterPosition = it.second
 
@@ -40,7 +40,7 @@ class WorkoutViewModel(
             val dayName = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault())
             val monthName = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault())
 
-            listWorkoutDay.add(i, WorkoutDay(
+            workoutDayList.add(i, WorkoutDay(
                     dayNumber,
                     dayName ?: "",
                     monthName ?: ""))
@@ -48,8 +48,8 @@ class WorkoutViewModel(
             calendar.add(Calendar.DAY_OF_MONTH, 1)
         }
 
-        listWorkoutDay[0].isSelectedWorkoutDay = true
-        return listWorkoutDay.toList()
+        workoutDayList[0].isSelectedWorkoutDay = true
+        return workoutDayList.toList()
     }
 
 }
