@@ -9,16 +9,16 @@ import com.jakewharton.rxbinding4.view.clicks
 import io.reactivex.rxjava3.core.Observable
 
 class MainPopupWindow(parent: ViewGroup): PopupWindow(parent.context) {
-    private val popupWindowMain = LayoutInflater.from(parent.context).inflate(R.layout.window_main, parent, false)
+    private val popupWindowView = LayoutInflater.from(parent.context).inflate(R.layout.window_main, parent, false)
 
-    private val workouts: TextView = popupWindowMain.findViewById(R.id.workouts)
-    private val archive: TextView = popupWindowMain.findViewById(R.id.archive)
-    private val importExport: TextView = popupWindowMain.findViewById(R.id.import_export)
-    private val settings: TextView = popupWindowMain.findViewById(R.id.settings)
-    private val help: TextView = popupWindowMain.findViewById(R.id.help)
+    private val workouts: TextView = popupWindowView.findViewById(R.id.workouts)
+    private val archive: TextView = popupWindowView.findViewById(R.id.archive)
+    private val importExport: TextView = popupWindowView.findViewById(R.id.import_export)
+    private val settings: TextView = popupWindowView.findViewById(R.id.settings)
+    private val help: TextView = popupWindowView.findViewById(R.id.help)
 
     init {
-        contentView = popupWindowMain
+        contentView = popupWindowView
         width = parent.resources.getDimensionPixelSize(R.dimen.window_width_five_items)
         height = parent.resources.getDimensionPixelSize(R.dimen.window_height_five_items)
         isOutsideTouchable = true

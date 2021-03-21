@@ -7,15 +7,25 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.emre.android.workoutroutine.R
+import com.emre.android.workoutroutine.view.EditDeletePopupWindow
 import com.emre.android.workoutroutine.view.lists.viewholders.WorkoutViewHolder
 
 class WorkoutListAdapter(private var workoutList: List<Pair<String, List<String>>>) : RecyclerView.Adapter<WorkoutViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WorkoutViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_workout, parent, false)
+        val popupWindow = EditDeletePopupWindow(parent)
 
         return WorkoutViewHolder(view) {
-            popupWindow(parent).showAsDropDown(it, 0, -36)
+            popupWindow.showAsDropDown(it, 0, -36)
+
+            popupWindow.edit.setOnClickListener {
+                popupWindow.dismiss()
+            }
+
+            popupWindow.delete.setOnClickListener {
+                popupWindow.dismiss()
+            }
         }
     }
 
@@ -32,27 +42,5 @@ class WorkoutListAdapter(private var workoutList: List<Pair<String, List<String>
 
     override fun getItemCount(): Int {
         return workoutList.size
-    }
-
-    private fun popupWindow(parent: ViewGroup): PopupWindow {
-        val windowWorkout = LayoutInflater.from(parent.context).inflate(R.layout.window_workout, parent, false)
-        val edit: TextView = windowWorkout.findViewById(R.id.edit)
-        val delete: TextView = windowWorkout.findViewById(R.id.delete)
-        val popupWindow = PopupWindow(parent.context)
-
-        popupWindow.contentView = windowWorkout
-        popupWindow.width = parent.resources.getDimensionPixelSize(R.dimen.window_width_two_items)
-        popupWindow.height = parent.resources.getDimensionPixelSize(R.dimen.window_height_two_items)
-        popupWindow.isOutsideTouchable = true
-        popupWindow.isFocusable = true
-
-        edit.setOnClickListener {
-            popupWindow.dismiss()
-        }
-        delete.setOnClickListener {
-            popupWindow.dismiss()
-        }
-
-        return popupWindow
     }
 }
