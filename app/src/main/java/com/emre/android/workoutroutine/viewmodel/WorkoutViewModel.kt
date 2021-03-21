@@ -1,6 +1,8 @@
-package com.emre.android.workoutroutine
+package com.emre.android.workoutroutine.viewmodel
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.emre.android.workoutroutine.WorkoutDay
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.addTo
@@ -8,17 +10,18 @@ import java.util.Calendar
 import java.util.Locale
 
 class WorkoutViewModel(
-    private val listWorkoutDay: MutableList<WorkoutDay> = mutableListOf()) : ViewModel() {
-
+    private val workoutDayList: MutableList<WorkoutDay> = mutableListOf()) : ViewModel() {
     private val disposables = CompositeDisposable()
+
+    val monthLiveData = MutableLiveData<String>()
 
     override fun onCleared() {
         super.onCleared()
         disposables.clear()
     }
 
-    fun subscribeWorkoutDayClicks(workoutDayClicks: Observable<Pair<List<WorkoutDay>, Int>>) {
-        workoutDayClicks.subscribe {
+    fun subscribeWorkoutDayClick(workoutDayClickObservable: Observable<Pair<List<WorkoutDay>, Int>>) {
+        workoutDayClickObservable.subscribe {
             val listWorkoutDayFromAdapter = it.first
             val adapterPosition = it.second
 
@@ -29,6 +32,8 @@ class WorkoutViewModel(
             }
 
             listWorkoutDayFromAdapter[adapterPosition].isSelectedWorkoutDay = true
+
+            monthLiveData.postValue(listWorkoutDayFromAdapter[adapterPosition].workoutMonthName)
         }.addTo(disposables)
     }
 
@@ -40,7 +45,7 @@ class WorkoutViewModel(
             val dayName = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault())
             val monthName = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault())
 
-            listWorkoutDay.add(i, WorkoutDay(
+            workoutDayList.add(i, WorkoutDay(
                     dayNumber,
                     dayName ?: "",
                     monthName ?: ""))
@@ -48,8 +53,10 @@ class WorkoutViewModel(
             calendar.add(Calendar.DAY_OF_MONTH, 1)
         }
 
-        listWorkoutDay[0].isSelectedWorkoutDay = true
-        return listWorkoutDay.toList()
+        workoutDayList[0].isSelectedWorkoutDay = true
+        monthLiveData.postValue(workoutDayList[0].workoutMonthName)
+
+        return workoutDayList.toList()
     }
 
 }

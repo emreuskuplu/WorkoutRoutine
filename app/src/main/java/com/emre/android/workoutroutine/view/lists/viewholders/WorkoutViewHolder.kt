@@ -1,9 +1,10 @@
-package com.emre.android.workoutroutine
+package com.emre.android.workoutroutine.view.lists.viewholders
 
 import android.view.View
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.emre.android.workoutroutine.R
 
 class WorkoutViewHolder(itemView: View, onWorkoutMenuClicked: (View) -> Unit) : RecyclerView.ViewHolder(itemView) {
     val workoutName: TextView = itemView.findViewById(R.id.workout_name)

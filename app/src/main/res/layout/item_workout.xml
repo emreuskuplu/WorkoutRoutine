@@ -34,16 +34,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_card_navigate"
-        android:contentDescription="@string/workout_navigate"
         android:layout_marginStart="232dp"
-        android:layout_gravity="center_vertical"/>
+        android:layout_gravity="center_vertical"
+        android:contentDescription="@string/workout_navigate"/>
 
     <ImageButton
         android:id="@+id/workout_menu"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_gravity="end|top"
-        android:src="@drawable/ic_popup_menu"
+        android:src="@drawable/ic_menu"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="@string/workout_menu" />
 

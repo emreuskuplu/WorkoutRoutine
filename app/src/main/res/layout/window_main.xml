@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorSurface"
+    android:orientation="vertical"
+    tools:ignore="Overdraw">
+
+    <TextView
+        android:id="@+id/workouts"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/window_textview_height"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/selector_text"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/rubik_regular"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/window_textview_padding_start"
+        android:paddingEnd="@dimen/window_textview_padding_end"
+        android:text="@string/workouts"
+        android:drawablePadding="@dimen/window_textview_padding_drawable"
+        app:drawableStartCompat="@drawable/ic_workouts" />
+
+    <TextView
+        android:id="@+id/archive"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/window_textview_height"
+        android:background="@drawable/selector_text"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/rubik_regular"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/window_textview_padding_start"
+        android:paddingEnd="@dimen/window_textview_padding_end"
+        android:text="@string/archive"
+        android:drawablePadding="@dimen/window_textview_padding_drawable"
+        app:drawableStartCompat="@drawable/ic_archive"/>
+
+    <TextView
+        android:id="@+id/import_export"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/window_textview_height"
+        android:background="@drawable/selector_text"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/rubik_regular"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/window_textview_padding_start"
+        android:paddingEnd="@dimen/window_textview_padding_end"
+        android:text="@string/import_export"
+        android:drawablePadding="@dimen/window_textview_padding_drawable"
+        app:drawableStartCompat="@drawable/ic_import_export"/>
+
+    <TextView
+        android:id="@+id/settings"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/window_textview_height"
+        android:background="@drawable/selector_text"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/rubik_regular"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/window_textview_padding_start"
+        android:paddingEnd="@dimen/window_textview_padding_end"
+        android:text="@string/settings"
+        android:drawablePadding="@dimen/window_textview_padding_drawable"
+        app:drawableStartCompat="@drawable/ic_settings"/>
+
+    <TextView
+        android:id="@+id/help"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/window_textview_height"
+        android:background="@drawable/selector_text"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/rubik_regular"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/window_textview_padding_start"
+        android:paddingEnd="@dimen/window_textview_padding_end"
+        android:text="@string/help"
+        android:drawablePadding="@dimen/window_textview_padding_drawable"
+        app:drawableStartCompat="@drawable/ic_info"/>
+
+</LinearLayout>
