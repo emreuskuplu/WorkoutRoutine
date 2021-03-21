@@ -5,6 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.MainActivity">
+    
+    <ImageButton
+        android:id="@+id/main_menu"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:rotation="90"
+        android:src="@drawable/ic_menu"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="@string/menu"/>
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host_fragment"

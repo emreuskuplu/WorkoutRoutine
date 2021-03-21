@@ -15,7 +15,7 @@ class WorkoutListAdapter(private var workoutList: List<Pair<String, List<String>
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_workout, parent, false)
 
         return WorkoutViewHolder(view) {
-            popupWindow(parent).showAsDropDown(it, -260, -36)
+            popupWindow(parent).showAsDropDown(it, 0, -36)
         }
     }
 
@@ -41,8 +41,8 @@ class WorkoutListAdapter(private var workoutList: List<Pair<String, List<String>
         val popupWindow = PopupWindow(parent.context)
 
         popupWindow.contentView = windowWorkout
-        popupWindow.width = parent.resources.getDimensionPixelSize(R.dimen.card_popup_menu_width)
-        popupWindow.height = parent.resources.getDimensionPixelSize(R.dimen.card_popup_menu_height)
+        popupWindow.width = parent.resources.getDimensionPixelSize(R.dimen.window_width_two_items)
+        popupWindow.height = parent.resources.getDimensionPixelSize(R.dimen.window_height_two_items)
         popupWindow.isOutsideTouchable = true
         popupWindow.isFocusable = true
 
