@@ -1,20 +1,24 @@
 package com.emre.android.workoutroutine.view
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageButton
-import android.widget.PopupWindow
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.get
 import androidx.core.view.size
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.emre.android.workoutroutine.MainViewModel
+import com.emre.android.workoutroutine.MainViewModelFactory
 import com.emre.android.workoutroutine.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.jakewharton.rxbinding4.view.clicks
+import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.kotlin.addTo
 
 class MainActivity : AppCompatActivity() {
+    private val disposables = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +28,31 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
         val menu: ImageButton = findViewById(R.id.main_menu)
+        val parent: ViewGroup = findViewById(R.id.main_activity)
+        val popupWindow = MainPopupWindow(parent)
+
+        val viewModel = ViewModelProvider(this, MainViewModelFactory(
+                popupWindow.getWorkoutsClicksObservable(),
+                popupWindow.getArchiveClicksObservable(),
+                popupWindow.getImportExportClicksObservable(),
+                popupWindow.getSettingsClicksObservable(),
+                popupWindow.getHelpClicksObservable())).get(MainViewModel::class.java)
+
+        viewModel.menuWorkoutLiveData.observe(this, {
+            popupWindow.dismiss()
+        })
+        viewModel.menuArchiveLiveData.observe(this, {
+            popupWindow.dismiss()
+        })
+        viewModel.menuImportExportLiveData.observe(this, {
+            popupWindow.dismiss()
+        })
+        viewModel.menuSettingsLiveData.observe(this, {
+            popupWindow.dismiss()
+        })
+        viewModel.menuHelpLiveData.observe(this, {
+            popupWindow.dismiss()
+        })
 
         bottomNavigationView.setupWithNavController(navController)
 
@@ -41,48 +70,16 @@ class MainActivity : AppCompatActivity() {
             }
 
             navController.navigate(it.itemId)
-
             true
         }
 
-        menu.setOnClickListener {
-            popupWindow(window.decorView.findViewById(android.R.id.content)).showAsDropDown(it, 0, -36)
-        }
+        menu.clicks().subscribe {
+            popupWindow.showAsDropDown(menu, 0, -36)
+        }.addTo(disposables)
     }
 
-    private fun popupWindow(parent: ViewGroup): PopupWindow {
-        val windowMain = LayoutInflater.from(parent.context).inflate(R.layout.window_main, parent, false)
-
-        val workouts: TextView = windowMain.findViewById(R.id.workouts)
-        val archive: TextView = windowMain.findViewById(R.id.archive)
-        val importExport: TextView = windowMain.findViewById(R.id.import_export)
-        val settings: TextView = windowMain.findViewById(R.id.settings)
-        val help: TextView = windowMain.findViewById(R.id.help)
-
-        val popupWindow = PopupWindow(parent.context)
-        popupWindow.contentView = windowMain
-        popupWindow.width = parent.resources.getDimensionPixelSize(R.dimen.window_width_five_items)
-        popupWindow.height = parent.resources.getDimensionPixelSize(R.dimen.window_height_five_items)
-        popupWindow.isOutsideTouchable = true
-        popupWindow.isFocusable = true
-
-        workouts.setOnClickListener {
-            popupWindow.dismiss()
-        }
-        archive.setOnClickListener {
-            popupWindow.dismiss()
-        }
-        importExport.setOnClickListener {
-            popupWindow.dismiss()
-        }
-        settings.setOnClickListener {
-            popupWindow.dismiss()
-        }
-        help.setOnClickListener {
-            popupWindow.dismiss()
-        }
-
-        return popupWindow
+    override fun onDestroy() {
+        super.onDestroy()
+        disposables.clear()
     }
-
 }
