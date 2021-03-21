@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,10 +19,15 @@ class WorkoutFragment : Fragment() {
     private lateinit var workoutDaysRecyclerView: RecyclerView
     private lateinit var workoutsRecyclerView: RecyclerView
     private lateinit var workoutViewModel: WorkoutViewModel
+    private lateinit var monthTextView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         workoutViewModel = ViewModelProvider(this).get(WorkoutViewModel::class.java)
+
+        workoutViewModel.monthLiveData.observe(this, {
+            monthTextView.text = it
+        })
     }
 
     override fun onCreateView(
@@ -35,6 +41,8 @@ class WorkoutFragment : Fragment() {
         val linearLayoutManagerHorizontal = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         val linearLayoutManagerVertical = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         val workoutDaysAdapter = WorkoutDayListAdapter(workoutViewModel.getWorkoutDays())
+
+        monthTextView = view.findViewById(R.id.month)
 
         val workoutList = mutableListOf<Pair<String, List<String>>>()
         val list = listOf("Jump rope", "Bodyweight Squats", "Bench Press", "Push Ups")

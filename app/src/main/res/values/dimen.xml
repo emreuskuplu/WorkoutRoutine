@@ -3,11 +3,11 @@
     <dimen name="window_width_two_items">138dp</dimen>
     <dimen name="window_height_two_items">116dp</dimen>
     <dimen name="window_width_five_items">171dp</dimen>
-    <dimen name="window_height_five_items">256dp</dimen>
+    <dimen name="window_height_five_items">260dp</dimen>
     <dimen name="window_textview_height">48dp</dimen>
     <dimen name="window_textview_padding_start">16dp</dimen>
     <dimen name="window_textview_padding_end">0dp</dimen>
     <dimen name="window_textview_padding_drawable">16dp</dimen>
-    <dimen name="window_icon_width">20dp</dimen>
-    <dimen name="window_icon_height">20dp</dimen>
+    <dimen name="window_icon_width">24dp</dimen>
+    <dimen name="window_icon_height">24dp</dimen>
 </resources>

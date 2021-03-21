@@ -1,5 +1,6 @@
 package com.emre.android.workoutroutine
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -9,8 +10,9 @@ import java.util.Locale
 
 class WorkoutViewModel(
     private val workoutDayList: MutableList<WorkoutDay> = mutableListOf()) : ViewModel() {
-
     private val disposables = CompositeDisposable()
+
+    val monthLiveData = MutableLiveData<String>()
 
     override fun onCleared() {
         super.onCleared()
@@ -29,6 +31,8 @@ class WorkoutViewModel(
             }
 
             listWorkoutDayFromAdapter[adapterPosition].isSelectedWorkoutDay = true
+
+            monthLiveData.postValue(listWorkoutDayFromAdapter[adapterPosition].workoutMonthName)
         }.addTo(disposables)
     }
 
@@ -49,6 +53,8 @@ class WorkoutViewModel(
         }
 
         workoutDayList[0].isSelectedWorkoutDay = true
+        monthLiveData.postValue(workoutDayList[0].workoutMonthName)
+
         return workoutDayList.toList()
     }
 
