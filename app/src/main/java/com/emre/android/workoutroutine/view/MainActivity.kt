@@ -9,9 +9,10 @@ import androidx.core.view.size
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import com.emre.android.workoutroutine.MainViewModel
-import com.emre.android.workoutroutine.MainViewModelFactory
+import com.emre.android.workoutroutine.viewmodel.MainViewModel
+import com.emre.android.workoutroutine.viewmodel.MainViewModelFactory
 import com.emre.android.workoutroutine.R
+import com.emre.android.workoutroutine.view.popupwindows.MainPopupWindow
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.jakewharton.rxbinding4.view.clicks
 import io.reactivex.rxjava3.disposables.CompositeDisposable

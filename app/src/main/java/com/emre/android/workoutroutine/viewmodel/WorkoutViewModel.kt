@@ -1,7 +1,8 @@
-package com.emre.android.workoutroutine
+package com.emre.android.workoutroutine.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.emre.android.workoutroutine.WorkoutDay
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.addTo

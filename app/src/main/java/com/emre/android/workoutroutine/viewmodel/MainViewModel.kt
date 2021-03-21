@@ -1,4 +1,4 @@
-package com.emre.android.workoutroutine
+package com.emre.android.workoutroutine.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

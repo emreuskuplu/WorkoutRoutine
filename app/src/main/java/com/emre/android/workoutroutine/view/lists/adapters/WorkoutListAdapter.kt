@@ -2,12 +2,10 @@ package com.emre.android.workoutroutine.view.lists.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.PopupWindow
-import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.emre.android.workoutroutine.R
-import com.emre.android.workoutroutine.view.EditDeletePopupWindow
+import com.emre.android.workoutroutine.view.popupwindows.EditDeletePopupWindow
 import com.emre.android.workoutroutine.view.lists.viewholders.WorkoutViewHolder
 
 class WorkoutListAdapter(private var workoutList: List<Pair<String, List<String>>>) : RecyclerView.Adapter<WorkoutViewHolder>() {

@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.emre.android.workoutroutine.R
-import com.emre.android.workoutroutine.WorkoutViewModel
+import com.emre.android.workoutroutine.viewmodel.WorkoutViewModel
 import com.emre.android.workoutroutine.view.lists.adapters.WorkoutDayListAdapter
 import com.emre.android.workoutroutine.view.lists.adapters.WorkoutListAdapter
 
