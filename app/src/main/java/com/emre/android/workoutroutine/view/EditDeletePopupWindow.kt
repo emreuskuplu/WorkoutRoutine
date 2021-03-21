@@ -7,7 +7,7 @@ import android.widget.TextView
 import com.emre.android.workoutroutine.R
 
 class EditDeletePopupWindow(parent: ViewGroup): PopupWindow(parent.context) {
-    private val popupWindowView = LayoutInflater.from(parent.context).inflate(R.layout.window_workout, parent, false)
+    private val popupWindowView = LayoutInflater.from(parent.context).inflate(R.layout.window_edit_delete, parent, false)
 
     val edit: TextView
         get() = popupWindowView.findViewById(R.id.edit)
