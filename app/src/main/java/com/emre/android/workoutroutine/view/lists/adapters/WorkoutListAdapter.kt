@@ -35,12 +35,12 @@ class WorkoutListAdapter(private var workoutList: List<Pair<String, List<String>
     }
 
     private fun popupWindow(parent: ViewGroup): PopupWindow {
-        val popupWindowView = LayoutInflater.from(parent.context).inflate(R.layout.card_popup_window, parent, false)
-        val edit: TextView = popupWindowView.findViewById(R.id.edit)
-        val delete: TextView = popupWindowView.findViewById(R.id.delete)
+        val windowWorkout = LayoutInflater.from(parent.context).inflate(R.layout.window_workout, parent, false)
+        val edit: TextView = windowWorkout.findViewById(R.id.edit)
+        val delete: TextView = windowWorkout.findViewById(R.id.delete)
         val popupWindow = PopupWindow(parent.context)
 
-        popupWindow.contentView = popupWindowView
+        popupWindow.contentView = windowWorkout
         popupWindow.width = parent.resources.getDimensionPixelSize(R.dimen.card_popup_menu_width)
         popupWindow.height = parent.resources.getDimensionPixelSize(R.dimen.card_popup_menu_height)
         popupWindow.isOutsideTouchable = true
