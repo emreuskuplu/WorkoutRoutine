@@ -6,7 +6,7 @@
         android:icon="@drawable/ic_action_body"
         android:title="@string/body" />
     <item
-        android:id="@+id/workout_fragment"
+        android:id="@+id/workout_pager"
         android:icon="@drawable/ic_action_workout"
         android:title="@string/workout" />
     <item
