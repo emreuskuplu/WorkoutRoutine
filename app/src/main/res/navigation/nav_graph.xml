@@ -2,11 +2,11 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/workout_fragment">
+    app:startDestination="@id/workout_pager">
 
     <fragment
-        android:id="@+id/workout_fragment"
-        android:name="com.emre.android.workoutroutine.view.fragments.WorkoutFragment"
+        android:id="@+id/workout_pager"
+        android:name="com.emre.android.workoutroutine.view.fragments.CollectionWorkoutFragment"
         android:label="fragment_workout"
         tools:layout="@layout/fragment_workout" />
     <fragment

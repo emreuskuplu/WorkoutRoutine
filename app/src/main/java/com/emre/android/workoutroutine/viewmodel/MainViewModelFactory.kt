@@ -19,6 +19,6 @@ class MainViewModelFactory(private val menuWorkoutsClicks: Observable<Unit>,
                     menuSettingsClicks,
                     menuHelpClicks) as T
         }
-        throw IllegalArgumentException("Unknown WorkoutViewModel")
+        throw IllegalArgumentException("Unknown MainViewModel")
     }
 }
