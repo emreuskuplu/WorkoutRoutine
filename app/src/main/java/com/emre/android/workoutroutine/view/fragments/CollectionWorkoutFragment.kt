@@ -17,6 +17,8 @@ import com.emre.android.workoutroutine.view.lists.DayListScrollListener
 import com.emre.android.workoutroutine.view.lists.adapters.DayListAdapter
 import com.emre.android.workoutroutine.viewmodel.CollectionWorkoutViewModel
 import com.emre.android.workoutroutine.viewmodel.CollectionWorkoutViewModelFactory
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.jakewharton.rxbinding4.view.clicks
 
 class CollectionWorkoutFragment : Fragment() {
 
@@ -31,6 +33,7 @@ class CollectionWorkoutFragment : Fragment() {
         val linearLayoutManager = LinearLayoutManager(context, HORIZONTAL, false)
 
         val monthTextView: TextView = view.findViewById(R.id.month)
+        val newWorkoutFabButton: FloatingActionButton = view.findViewById(R.id.new_workout_button)
 
         val dayListAdapter = DayListAdapter()
         val dayListScroll = DayListScrollListener(linearLayoutManager, context)
@@ -38,8 +41,8 @@ class CollectionWorkoutFragment : Fragment() {
 
         val thirdVisibleDayObservable = dayListScroll.thirdVisibleDayObservable
         val collectionWorkoutViewModel =
-                ViewModelProvider(this,
-                        CollectionWorkoutViewModelFactory(thirdVisibleDayObservable))
+                ViewModelProvider(requireActivity(),
+                        CollectionWorkoutViewModelFactory(requireActivity().application, thirdVisibleDayObservable, newWorkoutFabButton.clicks()))
                         .get(CollectionWorkoutViewModel::class.java)
 
         val dayList = collectionWorkoutViewModel.getDays()
@@ -52,24 +55,24 @@ class CollectionWorkoutFragment : Fragment() {
             monthTextView.text = it
         }
 
+        viewPager.adapter = workoutCollectionAdapter
+        viewPager.registerOnPageChangeCallback(workoutPageChangeCallback)
+        viewPager.setCurrentItem(viewPagerStartPosition, false)
+
         dayListAdapter.setDays(dayList)
         dayListRecyclerView.layoutManager = linearLayoutManager
         dayListRecyclerView.adapter = dayListAdapter
         dayListRecyclerView.addOnScrollListener(dayListScroll)
-
-        viewPager.adapter = workoutCollectionAdapter
-        viewPager.registerOnPageChangeCallback(workoutPageChangeCallback)
-        viewPager.setCurrentItem(viewPagerStartPosition, false)
 
         collectionWorkoutViewModel.dayListLiveData.observe(this as LifecycleOwner) {
             dayListAdapter.setDays(it.second)
             dayListAdapter.notifyDataSetChanged()
             workoutCollectionAdapter.setItemCountSize(it.second.size)
 
-            if (it.first > 23) { // It checks the day list position for adding future days.
-                dayListRecyclerView.smoothScrollToPosition(it.first) // Because of notifyDataSetChanged is called. It triggers the scroll listener to update the visible item positions.
+            if (it.first > 23) { /** It checks the day list position for adding future days. */
+                dayListRecyclerView.smoothScrollToPosition(it.first) /** Because of notifyDataSetChanged is called. It triggers the scroll listener to update the visible item positions. */
             } else {
-                // After adapter data is changed with past days. The position is changed because of head of day list is added with new items. Position must be come back to previous place.
+                /** After adapter data is changed with past days. The position is changed because of head of day list is added with new items. Position must be come back to previous place. */
                 viewPager.setCurrentItem(it.first, false)
             }
         }

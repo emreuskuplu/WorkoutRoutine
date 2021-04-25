@@ -1,4 +1,4 @@
-package com.emre.android.workoutroutine
+package com.emre.android.workoutroutine.data.model
 
 data class Day(
         var dayNumber: String,

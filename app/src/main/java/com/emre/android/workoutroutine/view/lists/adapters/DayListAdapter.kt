@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.emre.android.workoutroutine.R
-import com.emre.android.workoutroutine.Day
+import com.emre.android.workoutroutine.data.model.Day
 import com.emre.android.workoutroutine.view.lists.viewholders.DayViewHolder
 
 class DayListAdapter: RecyclerView.Adapter<DayViewHolder>() {
