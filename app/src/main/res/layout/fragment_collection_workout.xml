@@ -47,7 +47,6 @@
             android:clickable="true"
             android:focusable="true"
             android:src="@drawable/ic_add_box"
-            android:letterSpacing="0"
             app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
             app:shapeAppearanceOverlay="@style/ShapeExtendedFloatingActionButton"
             android:contentDescription="@string/add_new_workout" />

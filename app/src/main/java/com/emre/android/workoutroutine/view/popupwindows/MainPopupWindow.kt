@@ -17,31 +17,17 @@ class MainPopupWindow(parent: ViewGroup): PopupWindow(parent.context) {
     private val settings: TextView = popupWindowView.findViewById(R.id.settings)
     private val help: TextView = popupWindowView.findViewById(R.id.help)
 
+    val workoutClicksObservable = workouts.clicks()
+    val archiveClicksObservable = archive.clicks()
+    val importExportClicksObservable = importExport.clicks()
+    val settingsClicksObservable = settings.clicks()
+    val helpClicksObservable = help.clicks()
+
     init {
         contentView = popupWindowView
         width = parent.resources.getDimensionPixelSize(R.dimen.window_width_five_items)
         height = parent.resources.getDimensionPixelSize(R.dimen.window_height_five_items)
         isOutsideTouchable = true
         isFocusable = true
-    }
-
-    fun getWorkoutsClicksObservable(): Observable<Unit> {
-        return workouts.clicks()
-    }
-
-    fun getArchiveClicksObservable(): Observable<Unit> {
-        return archive.clicks()
-    }
-
-    fun getImportExportClicksObservable(): Observable<Unit> {
-        return importExport.clicks()
-    }
-
-    fun getSettingsClicksObservable(): Observable<Unit> {
-        return settings.clicks()
-    }
-
-    fun getHelpClicksObservable(): Observable<Unit> {
-        return help.clicks()
     }
 }

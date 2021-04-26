@@ -42,8 +42,9 @@ class CollectionWorkoutFragment : Fragment() {
         val thirdVisibleDayObservable = dayListScroll.thirdVisibleDayObservable
         val collectionWorkoutViewModel =
                 ViewModelProvider(requireActivity(),
-                        CollectionWorkoutViewModelFactory(requireActivity().application, thirdVisibleDayObservable, newWorkoutFabButton.clicks()))
-                        .get(CollectionWorkoutViewModel::class.java)
+                        CollectionWorkoutViewModelFactory(requireActivity().application,
+                            thirdVisibleDayObservable, newWorkoutFabButton.clicks()))
+                    .get(CollectionWorkoutViewModel::class.java)
 
         val dayList = collectionWorkoutViewModel.getDays()
 

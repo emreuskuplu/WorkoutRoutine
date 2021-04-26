@@ -9,8 +9,6 @@ import androidx.core.view.size
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import com.emre.android.workoutroutine.viewmodel.MainViewModel
-import com.emre.android.workoutroutine.viewmodel.MainViewModelFactory
 import com.emre.android.workoutroutine.R
 import com.emre.android.workoutroutine.view.popupwindows.MainPopupWindow
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -32,28 +30,25 @@ class MainActivity : AppCompatActivity() {
         val parent: ViewGroup = findViewById(R.id.main_activity)
         val popupWindow = MainPopupWindow(parent)
 
-        val viewModel = ViewModelProvider(this, MainViewModelFactory(
-                popupWindow.getWorkoutsClicksObservable(),
-                popupWindow.getArchiveClicksObservable(),
-                popupWindow.getImportExportClicksObservable(),
-                popupWindow.getSettingsClicksObservable(),
-                popupWindow.getHelpClicksObservable())).get(MainViewModel::class.java)
+        menu.clicks().subscribe {
+            popupWindow.showAsDropDown(menu, 0, -36)
+        }.addTo(disposables)
 
-        viewModel.menuWorkoutLiveData.observe(this, {
+        popupWindow.workoutClicksObservable.subscribe {
             popupWindow.dismiss()
-        })
-        viewModel.menuArchiveLiveData.observe(this, {
+        }.addTo(disposables)
+        popupWindow.archiveClicksObservable.subscribe {
             popupWindow.dismiss()
-        })
-        viewModel.menuImportExportLiveData.observe(this, {
+        }.addTo(disposables)
+        popupWindow.importExportClicksObservable.subscribe {
             popupWindow.dismiss()
-        })
-        viewModel.menuSettingsLiveData.observe(this, {
+        }.addTo(disposables)
+        popupWindow.settingsClicksObservable.subscribe {
             popupWindow.dismiss()
-        })
-        viewModel.menuHelpLiveData.observe(this, {
+        }.addTo(disposables)
+        popupWindow.helpClicksObservable.subscribe {
             popupWindow.dismiss()
-        })
+        }.addTo(disposables)
 
         bottomNavigationView.setupWithNavController(navController)
 
@@ -73,10 +68,6 @@ class MainActivity : AppCompatActivity() {
             navController.navigate(it.itemId)
             true
         }
-
-        menu.clicks().subscribe {
-            popupWindow.showAsDropDown(menu, 0, -36)
-        }.addTo(disposables)
     }
 
     override fun onDestroy() {
