@@ -42,4 +42,8 @@ class Repository(applicationContext: Context) {
     fun deleteExercise(exerciseId: Long) {
         exerciseDao.deleteExercise(exerciseId)
     }
+
+    fun deleteExercises(workoutId: Long) {
+        exerciseDao.deleteExercises(workoutId)
+    }
 }

@@ -28,32 +28,22 @@ class WorkoutFragment : Fragment() {
         val linearLayoutManagerVertical = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         val collectionWorkoutViewModel = ViewModelProvider(requireActivity()).get(CollectionWorkoutViewModel::class.java)
 
-/*
-        val workoutList = mutableListOf<Pair<String, List<String>>>()
-        val list = listOf("Jump rope", "Bodyweight Squats", "Bench Press", "Push Ups")
-
-        for (i in 0..4) {
-            workoutList.add("Strength Workout" to list)
-        }
-*/
-        val workoutsAdapter = WorkoutListAdapter(listOf())
+        val workoutsAdapter = WorkoutListAdapter(parentFragmentManager)
 
         workoutsRecyclerView = view.findViewById(R.id.workouts_recyclerview)
         workoutsRecyclerView.layoutManager = linearLayoutManagerVertical
         workoutsRecyclerView.adapter = workoutsAdapter
-/*
-        collectionWorkoutViewModel.getWorkoutList().observe(this as LifecycleOwner, { workoutList ->
-            workoutsAdapter.setWorkoutList(workoutList.map { it.workoutName to listOf()})
-            workoutsAdapter.notifyDataSetChanged()
-        })*/
-/*
-        collectionWorkoutViewModel.workoutListLiveData.observe(this as LifecycleOwner, { pair ->
-            workoutsAdapter.setWorkoutList(pair.first.map { workoutList -> workoutList.workoutName to pair.second.map { it.exerciseName } })
-        })*/
 
-        collectionWorkoutViewModel.workoutListLiveData.observe(this as LifecycleOwner, {
-            workoutsAdapter.setWorkoutList(it)
-            workoutsAdapter.notifyDataSetChanged()
-        })
+        collectionWorkoutViewModel
+            .updateWorkoutListLiveData
+            .observe(viewLifecycleOwner, { workoutList ->
+                workoutsAdapter.setWorkoutList(workoutList)
+            })
+
+        collectionWorkoutViewModel
+            .updateWorkoutListAfterWorkoutRemovedInDbLiveData
+            .observe(viewLifecycleOwner, { position ->
+                workoutsAdapter.removeWorkoutByPositionAndUpdateWorkoutList(position)
+            })
     }
 }

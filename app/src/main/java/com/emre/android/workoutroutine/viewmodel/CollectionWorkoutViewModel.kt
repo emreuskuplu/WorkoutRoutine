@@ -17,6 +17,12 @@ import io.reactivex.rxjava3.subjects.PublishSubject
 import java.util.Calendar
 import java.util.Locale
 
+/**
+ * @property updateWorkoutListLiveData It post value after workouts inserted in database.
+ * @property updateWorkoutListAfterWorkoutRemovedInDbLiveData It post value after workouts removed in database.
+ * When it posted after workouts removed, it must be called notifyItemRemoved instead of notifyDataSetChanged.
+ * Recyclerview's remove animation will be broken if notifyDataSetChanged is called.
+ */
 class CollectionWorkoutViewModel(
     application: Application,
     thirdVisibleDayObservable: Observable<Int>,
@@ -31,40 +37,21 @@ class CollectionWorkoutViewModel(
     private var updatedFutureDayListAtPosition = 20
     private var updatedPastDayListAtPosition = 20
     private var workoutsInDbObservable = repository.workoutsInDbObservable()
-    private val updateWorkoutListSubject = PublishSubject.create<Unit>()
+    private val updateWorkoutListOnViewSubject = PublishSubject.create<Unit>()
+    private var isWorkoutDeletedInDb = false
+    private var positionForRemoveWorkoutInList = 0
     val monthLiveData = MutableLiveData<String>()
     val dayListLiveData = MutableLiveData<Pair<Int, List<Day>>>()
-    val workoutListLiveData = MutableLiveData<List<Pair<Workout, List<Exercise>>>>()
+    val updateWorkoutListLiveData = MutableLiveData<List<Pair<Workout, List<Exercise>>>>()
+    val updateWorkoutListAfterWorkoutRemovedInDbLiveData = MutableLiveData<Int>()
 
     init {
         addFutureTwentyDays()
         addPastTwentyDays()
 
-        /**
-         * updateWorkoutListSubject in use for trigger workoutsInDbObservable
-         * Schedulers.single is necessary for synchronize working with other observables that in use this single thread,
-         * because of all exercises must be added before this observable fetch exercises.
-         */
-        Observables.combineLatest(updateWorkoutListSubject, workoutsInDbObservable)
-            .observeOn(Schedulers.single())
-            .subscribeOn(AndroidSchedulers.mainThread())
-            .map {
-                val workoutListWithExercises = mutableListOf<Pair<Workout, List<Exercise>>>()
-
-                for (workout in it.second) {
-                    workoutListWithExercises.add(workout to repository.getExercisesInDb(workout.id!!))
-                }
-
-                workoutListWithExercises.toList()
-            }
-            .subscribe {
-                workoutListLiveData.postValue(it)
-            }
-            .addTo(disposables)
-
         thirdVisibleDayObservable
             .subscribe { thirdVisibleDayPosition ->
-                updateWorkoutListSubject.onNext(Unit)
+                updateWorkoutListOnViewSubject.onNext(Unit)
                 monthLiveData.postValue(dayList[thirdVisibleDayPosition].monthName)
             }
             .addTo(disposables)
@@ -139,11 +126,53 @@ class CollectionWorkoutViewModel(
                 )
             }
             .addTo(disposables)
+
+        /**
+         * updateWorkoutListSubject in use for trigger workoutsInDbObservable
+         * Schedulers.single is necessary for synchronize working with other observables that in use this single thread,
+         * because of all exercises must be added before this observable fetch exercises.
+         */
+        Observables.combineLatest(updateWorkoutListOnViewSubject, workoutsInDbObservable)
+            .observeOn(Schedulers.single())
+            .subscribeOn(AndroidSchedulers.mainThread())
+            .map {
+                val workoutListWithExercises = mutableListOf<Pair<Workout, List<Exercise>>>()
+
+                for (workout in it.second) {
+                    workoutListWithExercises.add(workout to repository.getExercisesInDb(workout.id!!))
+                }
+
+                workoutListWithExercises.toList()
+            }
+            .subscribe {
+                if (!isWorkoutDeletedInDb) {
+                    updateWorkoutListLiveData.postValue(it)
+                } else {
+                    updateWorkoutListAfterWorkoutRemovedInDbLiveData.postValue(
+                        positionForRemoveWorkoutInList
+                    )
+                    isWorkoutDeletedInDb = !isWorkoutDeletedInDb
+                }
+            }
+            .addTo(disposables)
     }
 
     override fun onCleared() {
         super.onCleared()
         disposables.clear()
+    }
+
+    fun subscribeToDeleteWorkoutWithExercisesInside(deleteWorkoutObservable: Observable<Pair<Int, Long>>) {
+        deleteWorkoutObservable
+            .observeOn(Schedulers.io())
+            .subscribe { (positionForRemoveWorkoutInList, workoutId) ->
+                isWorkoutDeletedInDb = true
+                this.positionForRemoveWorkoutInList = positionForRemoveWorkoutInList
+
+                repository.deleteWorkout(workoutId)
+                repository.deleteExercises(workoutId)
+            }
+            .addTo(disposables)
     }
 
     fun getDays(): List<Day> {

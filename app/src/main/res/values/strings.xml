@@ -16,4 +16,6 @@
     <string name="help">Help</string>
     <string name="menu">menu</string>
     <string name="add_new_workout">Add new workout</string>
+    <string name="delete_workout">Are you sure to you want to delete this workout?</string>
+    <string name="cancel">Cancel</string>
 </resources>

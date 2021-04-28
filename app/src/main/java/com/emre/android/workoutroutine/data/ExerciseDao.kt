@@ -21,4 +21,7 @@ interface ExerciseDao {
 
     @Query("DELETE FROM exercise WHERE id = :id")
     fun deleteExercise(id: Long)
+
+    @Query("DELETE FROM exercise WHERE workoutId = :id")
+    fun deleteExercises(id: Long)
 }
