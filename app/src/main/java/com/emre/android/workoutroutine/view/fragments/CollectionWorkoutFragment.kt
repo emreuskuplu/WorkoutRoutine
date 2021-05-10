@@ -75,8 +75,6 @@ class CollectionWorkoutFragment : Fragment() {
             binding.month.text = it
         }
 
-        Log.i(this.javaClass.simpleName, "C ${collectionWorkoutsViewModel.viewPagerStartPosition}")
-
         binding.workoutPager.adapter = workoutCollectionAdapter
         binding.workoutPager.registerOnPageChangeCallback(workoutPageChangeCallback)
         binding.workoutPager.setCurrentItem(

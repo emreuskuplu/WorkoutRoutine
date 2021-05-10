@@ -20,10 +20,10 @@ import java.util.concurrent.TimeUnit
 
 /**
  * @property deleteWorkoutWithExercisesDisposable It must be cleared after
- * updateWorkoutListAfterWorkoutRemovedInDbLiveData posted for prevent memory leak.
+ * updateWorkoutListAfterWorkoutRemovedInDbLiveData sent for prevent memory leak.
  * @property workoutListLiveData It post value after workouts inserted in database.
- * @property updateWorkoutListAfterWorkoutRemovedInDbLiveData It post value after workouts removed in database.
- * When it posted after workouts removed, it must be called notifyItemRemoved instead of notifyDataSetChanged.
+ * @property updateWorkoutListAfterWorkoutRemovedInDbLiveData It send value after workouts removed in database.
+ * When it sent after workouts removed, it must be called notifyItemRemoved instead of notifyDataSetChanged.
  * RecyclerView's remove animation will be broken if notifyDataSetChanged is called.
  */
 class CollectionWorkoutsViewModel(appDatabase: AppDatabase) : ViewModel() {
@@ -153,7 +153,7 @@ class CollectionWorkoutsViewModel(appDatabase: AppDatabase) : ViewModel() {
     /**
      * It needs to delay emitting because of workout possibly deleted in db and if workout
      * deleted in db, then item remove animation of recyclerview break without delay because of
-     * notifyDataSetChanged called after workoutListLiveData send value.
+     * notifyDataSetChanged called after workoutListLiveData sent value.
      */
     fun subscribeWorkoutsWithExercisesInDb(day: Day): Disposable {
         return workoutRepo.getWorkoutsWithExercisesInDbObservable(day, exerciseRepo)
