@@ -5,9 +5,11 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class Set(
-        @PrimaryKey(autoGenerate = true)
-        var id: Long? = null,
-        var exerciseId: Long,
-        var reps: Int,
-        var kg: Int?,
-        var rest: String?)
+    var exerciseId: Long,
+    var reps: Int,
+    var kg: Int?,
+    var rest: String?
+) {
+    @PrimaryKey(autoGenerate = true)
+    var id: Long = 0
+}

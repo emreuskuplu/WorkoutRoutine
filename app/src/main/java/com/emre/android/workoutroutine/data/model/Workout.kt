@@ -5,16 +5,18 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class Workout(
-        @PrimaryKey(autoGenerate = true)
-        var id: Long? = null,
         var workoutName: String = "",
         var workoutDateStart: String,
         var workoutDateEnd: String? = null,
         var workoutReminder: String? = null,
-        var monday: Boolean = false,
-        var tuesday: Boolean = false,
-        var wednesday: Boolean = false,
-        var thursday: Boolean = false,
-        var friday: Boolean = false,
-        var saturday: Boolean = false,
-        var sunday: Boolean = false)
+        var mon: Boolean = false,
+        var tue: Boolean = false,
+        var wed: Boolean = false,
+        var thu: Boolean = false,
+        var fri: Boolean = false,
+        var sat: Boolean = false,
+        var sun: Boolean = false
+) {
+        @PrimaryKey(autoGenerate = true)
+        var id: Long = 0
+}

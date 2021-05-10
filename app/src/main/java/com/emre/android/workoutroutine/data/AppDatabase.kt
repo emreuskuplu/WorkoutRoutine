@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.emre.android.workoutroutine.data.dao.ExerciseDao
+import com.emre.android.workoutroutine.data.dao.WorkoutDao
 import com.emre.android.workoutroutine.data.model.Exercise
 import com.emre.android.workoutroutine.data.model.Set
 import com.emre.android.workoutroutine.data.model.Workout
@@ -11,7 +13,7 @@ import com.emre.android.workoutroutine.data.model.Workout
 @Database(entities = [
     Workout::class,
     Exercise::class,
-    Set::class], version = 1)
+    Set::class], version = 1, exportSchema = false)
 abstract class AppDatabase: RoomDatabase() {
 
     abstract fun workoutDao(): WorkoutDao
@@ -21,12 +23,13 @@ abstract class AppDatabase: RoomDatabase() {
         private var appDatabase: AppDatabase? = null
 
         fun getInstance(applicationContext: Context): AppDatabase {
-            if (appDatabase == null) {
-                appDatabase = Room.databaseBuilder(applicationContext,
-                    AppDatabase::class.java, "app-database").build()
-            }
-
-            return appDatabase!!
+            return appDatabase ?: Room
+                .databaseBuilder(
+                    applicationContext,
+                    AppDatabase::class.java,
+                    "app-database"
+                )
+                .build()
         }
     }
 }
