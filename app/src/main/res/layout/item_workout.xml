@@ -39,7 +39,7 @@
         android:contentDescription="@string/workout_navigate"/>
 
     <ImageButton
-        android:id="@+id/workout_menu"
+        android:id="@+id/menu_button"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_gravity="end|top"
