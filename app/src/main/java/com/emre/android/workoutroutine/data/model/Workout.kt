@@ -9,13 +9,6 @@ data class Workout(
         var workoutDateStart: String,
         var workoutDateEnd: String? = null,
         var workoutReminder: String? = null,
-        var mon: Boolean = false,
-        var tue: Boolean = false,
-        var wed: Boolean = false,
-        var thu: Boolean = false,
-        var fri: Boolean = false,
-        var sat: Boolean = false,
-        var sun: Boolean = false
 ) {
         @PrimaryKey(autoGenerate = true)
         var id: Long = 0

@@ -81,6 +81,7 @@ class CollectionWorkoutFragment : Fragment() {
             collectionWorkoutsViewModel.viewPagerStartPosition,
             false
         )
+        binding.workoutPager.offscreenPageLimit = 2
 
         Log.i(this.javaClass.simpleName, "${binding.workoutPager.currentItem}")
 

@@ -16,13 +16,13 @@ class WorkoutRepo(appDatabase: AppDatabase) {
 
     /**
      * Schedulers.single is necessary for synchronize working with other observables that in use
-     * this single thread, because of all exercises must be added before this observable fetch exercises.
+     * this single thread, because of all exercises must be added before this observable get exercises.
      */
     fun getWorkoutsWithExercisesInDbObservable(
         day: Day,
         exerciseRepo: ExerciseRepo
     ): Observable<List<Pair<Workout, List<Exercise>>>> {
-        return workoutDao.workoutsObservable(day.date)
+        return workoutDao.workoutsObservable(day.date, day.dayName)
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.single())
             .map { workouts ->

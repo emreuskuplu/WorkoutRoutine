@@ -5,9 +5,10 @@ import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelStoreOwner
 import com.emre.android.workoutroutine.R
 import com.emre.android.workoutroutine.databinding.DialogDeleteWorkoutBinding
-import com.emre.android.workoutroutine.viewmodel.CollectionWorkoutsViewModel
+import com.emre.android.workoutroutine.viewmodel.WorkoutsViewModel
 import com.jakewharton.rxbinding4.view.clicks
 
 /**
@@ -18,14 +19,15 @@ import com.jakewharton.rxbinding4.view.clicks
 class DeleteWorkoutDialog(
     private val positionForRemoveWorkoutInList: Int,
     private val workoutId: Long,
-    private val workoutListSizeForConditionToRemoveItemFromAdapter: Int
+    private val workoutListSizeForConditionToRemoveItemFromAdapter: Int,
+    private val viewModelStoreOwner: ViewModelStoreOwner
 ) : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = AlertDialog.Builder(requireActivity(), R.style.DialogTheme)
         val binding = DialogDeleteWorkoutBinding.inflate(layoutInflater)
-        val collectionWorkoutViewModel =
-            ViewModelProvider(requireActivity()).get(CollectionWorkoutsViewModel::class.java)
+        val workoutsViewModel =
+            ViewModelProvider(viewModelStoreOwner).get(WorkoutsViewModel::class.java)
 
         builder.setView(binding.root)
 
@@ -33,7 +35,7 @@ class DeleteWorkoutDialog(
             dismiss()
         }
 
-        collectionWorkoutViewModel
+        workoutsViewModel
             .subscribeDeleteWorkoutWithExercisesInside(binding.deleteButton.clicks().map {
                 dismiss()
                 (positionForRemoveWorkoutInList to workoutId) to workoutListSizeForConditionToRemoveItemFromAdapter

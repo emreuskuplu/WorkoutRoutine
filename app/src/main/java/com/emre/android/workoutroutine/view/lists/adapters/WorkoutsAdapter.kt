@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.emre.android.workoutroutine.data.model.Exercise
@@ -12,8 +13,10 @@ import com.emre.android.workoutroutine.databinding.ItemWorkoutBinding
 import com.emre.android.workoutroutine.view.DeleteWorkoutDialog
 import com.emre.android.workoutroutine.view.popupwindows.EditDeletePopupWindow
 
-class WorkoutsAdapter(private val fragmentManager: FragmentManager) :
-    RecyclerView.Adapter<WorkoutsAdapter.WorkoutViewHolder>() {
+class WorkoutsAdapter(
+    private val fragmentManager: FragmentManager,
+    private val viewModelStoreOwner: ViewModelStoreOwner
+    ) : RecyclerView.Adapter<WorkoutsAdapter.WorkoutViewHolder>() {
 
     private var workoutList: MutableList<Pair<Workout, List<Exercise>>> = mutableListOf()
 
@@ -50,7 +53,7 @@ class WorkoutsAdapter(private val fragmentManager: FragmentManager) :
 
             popupWindow.binding.delete.setOnClickListener {
                 val workoutId = workoutList[position].first.id
-                val deleteWorkoutDialog = DeleteWorkoutDialog(position, workoutId, workoutList.size)
+                val deleteWorkoutDialog = DeleteWorkoutDialog(position, workoutId, workoutList.size, viewModelStoreOwner)
 
                 deleteWorkoutDialog.show(fragmentManager, "DeleteWorkout")
                 popupWindow.dismiss()
