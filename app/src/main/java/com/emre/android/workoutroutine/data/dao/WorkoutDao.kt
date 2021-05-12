@@ -12,8 +12,8 @@ interface WorkoutDao {
     @Insert
     fun insert(workout: Workout): Long
 
-    @Query("SELECT * FROM workout WHERE CASE WHEN workoutDateEnd IS NULL THEN workoutDateStart < :date ELSE :date BETWEEN workoutDateStart AND workoutDateEnd END")
-    fun workoutsObservable(date: String): Observable<List<Workout>>
+    @Query("SELECT workout.id, workoutName, workoutDateStart FROM workout INNER JOIN workoutdayofweek ON workout.id = workoutdayofweek.workoutId WHERE CASE WHEN workoutDateEnd IS NULL THEN workoutDateStart < :date ELSE :date BETWEEN workoutDateStart AND workoutDateEnd END AND dayOfWeek = :dayOfWeek")
+    fun workoutsObservable(date: String, dayOfWeek: String): Observable<List<Workout>>
 
     @Query("DELETE FROM workout WHERE id = :id")
     fun delete(id: Long)

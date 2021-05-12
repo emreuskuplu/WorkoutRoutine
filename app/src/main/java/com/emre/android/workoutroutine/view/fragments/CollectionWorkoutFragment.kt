@@ -75,14 +75,13 @@ class CollectionWorkoutFragment : Fragment() {
             binding.month.text = it
         }
 
-        Log.i(this.javaClass.simpleName, "C ${collectionWorkoutsViewModel.viewPagerStartPosition}")
-
         binding.workoutPager.adapter = workoutCollectionAdapter
         binding.workoutPager.registerOnPageChangeCallback(workoutPageChangeCallback)
         binding.workoutPager.setCurrentItem(
             collectionWorkoutsViewModel.viewPagerStartPosition,
             false
         )
+        binding.workoutPager.offscreenPageLimit = 2
 
         Log.i(this.javaClass.simpleName, "${binding.workoutPager.currentItem}")
 

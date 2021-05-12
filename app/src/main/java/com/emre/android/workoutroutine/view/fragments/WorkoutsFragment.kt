@@ -8,19 +8,17 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.emre.android.workoutroutine.data.AppDatabase
 import com.emre.android.workoutroutine.databinding.FragmentWorkoutBinding
 import com.emre.android.workoutroutine.view.lists.adapters.WorkoutsAdapter
 import com.emre.android.workoutroutine.viewmodel.CollectionWorkoutsViewModel
-import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.kotlin.addTo
-import java.lang.Exception
+import com.emre.android.workoutroutine.viewmodel.WorkoutsViewModel
+import com.emre.android.workoutroutine.viewmodel.WorkoutsViewModelFactory
 
 /**
  * @property thirdVisibleDayPosition (viewpager position + 2) It is in use for getting day in dayList.
  * When recyclerview scrollToPosition is scroll to firstVisibleItem by viewPagerChangeCallback,
  * thirdVisibleDayPosition is attached with + 2 for get thirdVisibleItem position.
- * @property disposables This property must be here instead of in CollectionWorkoutsViewModel because of
- * workoutsFragment lifecycle is dependent to viewPager.
  * If created disposables by workoutsFragment to stay in CollectionWorkoutsViewModel then it causes
  * memory leak when WorkoutsFragment destroyed.
  * @property _binding This property is only valid between onCreateView and onDestroyView.
@@ -30,11 +28,11 @@ import java.lang.Exception
  */
 class WorkoutsFragment : Fragment() {
 
-    private var disposables = CompositeDisposable()
     private var _binding: FragmentWorkoutBinding? = null
     private val binding get() = _binding ?: throw Exception("Binding class is not found.")
     private var _thirdVisibleDayPosition: Int? = null
-    private val thirdVisibleDayPosition get() = _thirdVisibleDayPosition ?: throw Exception("thirdVisibleDayPosition is not found.")
+    private val thirdVisibleDayPosition
+        get() = _thirdVisibleDayPosition ?: throw Exception("thirdVisibleDayPosition is not found.")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,8 +40,10 @@ class WorkoutsFragment : Fragment() {
         Log.i(this.javaClass.simpleName, "Created fragment position: $thirdVisibleDayPosition")
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         _binding = FragmentWorkoutBinding.inflate(inflater, container, false)
 
         return binding.root
@@ -53,10 +53,18 @@ class WorkoutsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val linearLayoutManagerVertical =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        val collectionWorkoutViewModel =
+        val workoutsViewModel =
+            ViewModelProvider(
+                this,
+                WorkoutsViewModelFactory(
+                    AppDatabase.getInstance(requireActivity().application)
+                )
+            ).get(WorkoutsViewModel::class.java)
+        val collectionWorkoutsViewModel =
             ViewModelProvider(requireActivity()).get(CollectionWorkoutsViewModel::class.java)
-        val workoutsAdapter = WorkoutsAdapter(parentFragmentManager)
-        val day = collectionWorkoutViewModel
+
+        val workoutsAdapter = WorkoutsAdapter(parentFragmentManager, this)
+        val day = collectionWorkoutsViewModel
             .getDays()[thirdVisibleDayPosition]
 
         Log.i(this.javaClass.simpleName, "Created fragment day: ${day.dayNumber}")
@@ -64,28 +72,41 @@ class WorkoutsFragment : Fragment() {
         binding.workoutsRecyclerview.layoutManager = linearLayoutManagerVertical
         binding.workoutsRecyclerview.adapter = workoutsAdapter
 
-        collectionWorkoutViewModel
+        workoutsViewModel
             .subscribeWorkoutsWithExercisesInDb(day)
-            .addTo(disposables)
 
-        collectionWorkoutViewModel
+        /**
+         * It has condition for check to size of workout list in removedInDbLiveData to check to
+         * whether workout deleted in db.
+         * If the condition is false, then it will prevent to calling the notifyDataSetChanged for not
+         * break remove animation of recyclerview on the page the user sees.
+         */
+        workoutsViewModel
             .workoutListLiveData
             .observe(viewLifecycleOwner, { workoutList ->
-                workoutsAdapter.setWorkoutList(workoutList)
+                val workoutListSizeBeforeRemoved = workoutsViewModel
+                    .updateWorkoutListAfterWorkoutRemovedInDbLiveData
+                    .value
+
+                if (workoutList.size >= workoutListSizeBeforeRemoved?.second ?: 0 || !isResumed) {
+                    workoutsAdapter.setWorkoutList(workoutList)
+                }
             })
 
-        collectionWorkoutViewModel
+        workoutsViewModel
             .updateWorkoutListAfterWorkoutRemovedInDbLiveData
             .observe(viewLifecycleOwner, { (position, workoutListSize) ->
-                workoutsAdapter.removeWorkoutByPositionAndUpdateWorkoutList(position, workoutListSize)
-                collectionWorkoutViewModel.deleteWorkoutWithExercisesDisposable.clear()
+                workoutsAdapter.removeWorkoutByPositionAndUpdateWorkoutList(
+                    position,
+                    workoutListSize
+                )
+                workoutsViewModel.deleteWorkoutWithExercisesDisposable.clear()
             })
     }
 
     override fun onDestroy() {
         super.onDestroy()
         Log.i(this.javaClass.simpleName, "Destroyed fragment position: $thirdVisibleDayPosition")
-        disposables.clear()
     }
 
     companion object {
