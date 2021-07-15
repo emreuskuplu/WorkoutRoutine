@@ -25,6 +25,10 @@ class WorkoutsAdapter(
         notifyDataSetChanged()
     }
 
+    fun getWorkoutName(position: Int): String {
+        return workoutList[position].first.workoutName
+    }
+
     /**
      * If this method called after setWorkoutList called, then this method may remove wrong item or
      * it may throws IndexOutOfBoundsException.

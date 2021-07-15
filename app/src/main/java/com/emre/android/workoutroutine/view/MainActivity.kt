@@ -28,18 +28,18 @@ class MainActivity : AppCompatActivity() {
             binding.bottomNavigationView.menu.findItem(it.id).setEnabled(false)
         }
 
-        binding.bottomNavigationView.setOnNavigationItemSelectedListener {
-            it.isEnabled = false
+        binding.bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
+            menuItem.isEnabled = false
 
             for (i in 0 until binding.bottomNavigationView.menu.size) {
                 if (binding.bottomNavigationView.menu[i] !=
-                    binding.bottomNavigationView.menu.findItem(it.itemId)
+                    binding.bottomNavigationView.menu.findItem(menuItem.itemId)
                 ) {
                     binding.bottomNavigationView.menu[i].isEnabled = true
                 }
             }
 
-            navController.navigate(it.itemId)
+            navController.navigate(menuItem.itemId)
             true
         }
 

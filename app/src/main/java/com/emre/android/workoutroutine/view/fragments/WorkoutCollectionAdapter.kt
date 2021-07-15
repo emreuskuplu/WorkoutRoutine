@@ -14,7 +14,7 @@ class WorkoutCollectionAdapter(viewPagerFragmentActivity: FragmentActivity, priv
     FragmentStateAdapter(viewPagerFragmentActivity) {
 
     override fun getItemCount(): Int {
-        return dayListSize
+        return dayListSize - 2
     }
 
     override fun createFragment(position: Int): Fragment {
@@ -23,5 +23,6 @@ class WorkoutCollectionAdapter(viewPagerFragmentActivity: FragmentActivity, priv
 
     fun setItemCountSize(dayListSize: Int) {
         this.dayListSize = dayListSize - 2
+        notifyDataSetChanged()
     }
 }

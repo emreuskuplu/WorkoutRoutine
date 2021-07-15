@@ -22,6 +22,7 @@ class DaysScrollListener(private val linearLayoutManager: LinearLayoutManager,
     private val colorSecondAndFourthDay = ContextCompat.getColor(context, R.color.colorSecondAndFourthDay)
     private val colorThirdDay = ContextCompat.getColor(context, R.color.colorSecondaryVariant)
     private val thirdVisibleDaySubject = PublishSubject.create<Int>()
+
     val thirdVisibleDayObservable: Observable<Int> = thirdVisibleDaySubject.hide()
 
     /**
@@ -62,7 +63,7 @@ class DaysScrollListener(private val linearLayoutManager: LinearLayoutManager,
 
             thirdVisibleDaySubject.onNext(firstCompletelyVisibleItemPosition + 2)
 
-            Log.i("DayListScrollListener", "${firstCompletelyVisibleItemPosition + 2}")
+            Log.i(this.javaClass.simpleName, "${firstCompletelyVisibleItemPosition + 2}")
         }
     }
 }

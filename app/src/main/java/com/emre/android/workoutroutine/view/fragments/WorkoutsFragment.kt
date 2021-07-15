@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -96,12 +97,21 @@ class WorkoutsFragment : Fragment() {
         workoutsViewModel
             .updateWorkoutListAfterWorkoutRemovedInDbLiveData
             .observe(viewLifecycleOwner, { (position, workoutListSize) ->
+                val workoutNameToBeDeleted = workoutsAdapter.getWorkoutName(position)
+
                 workoutsAdapter.removeWorkoutByPositionAndUpdateWorkoutList(
                     position,
                     workoutListSize
                 )
                 workoutsViewModel.deleteWorkoutWithExercisesDisposable.clear()
+
+                Toast.makeText(context, "$workoutNameToBeDeleted is deleted.", Toast.LENGTH_LONG).show()
             })
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onDestroy() {
