@@ -8,16 +8,17 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL
+import com.emre.android.workoutroutine.R
 import com.emre.android.workoutroutine.data.AppDatabase
 import com.emre.android.workoutroutine.databinding.FragmentCollectionWorkoutBinding
 import com.emre.android.workoutroutine.view.lists.DaysScrollListener
 import com.emre.android.workoutroutine.view.lists.adapters.DaysAdapter
 import com.emre.android.workoutroutine.viewmodel.CollectionWorkoutsViewModel
 import com.emre.android.workoutroutine.viewmodel.CollectionWorkoutsViewModelFactory
-import com.jakewharton.rxbinding4.view.clicks
-import java.lang.Exception
+import com.emre.android.workoutroutine.viewmodel.MainViewModel
 
 /**
  * @property _binding This property is only valid between onCreateView and onDestroyView.
@@ -52,6 +53,9 @@ class CollectionWorkoutFragment : Fragment() {
 
         val thirdVisibleDayObservable = dayListScroll.thirdVisibleDayObservable
 
+        val mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
+        mainViewModel.bottomBarLiveData.value = true
+
         collectionWorkoutsViewModel =
             ViewModelProvider(
                 requireActivity(),
@@ -61,7 +65,7 @@ class CollectionWorkoutFragment : Fragment() {
             ).get(CollectionWorkoutsViewModel::class.java)
 
         collectionWorkoutsViewModel.subscribeThirdVisibleDayObservable(thirdVisibleDayObservable)
-        collectionWorkoutsViewModel.subscribeNewWorkoutObservable(binding.newWorkoutButton.clicks())
+        //collectionWorkoutsViewModel.subscribeNewWorkoutObservable(binding.newWorkoutButton.clicks())
 
         val dayList = collectionWorkoutsViewModel.getDays()
 
@@ -89,6 +93,10 @@ class CollectionWorkoutFragment : Fragment() {
         binding.daysRecyclerview.layoutManager = linearLayoutManager
         binding.daysRecyclerview.adapter = dayListAdapter
         binding.daysRecyclerview.addOnScrollListener(dayListScroll)
+
+        binding.newWorkoutButton.setOnClickListener {
+            findNavController().navigate(R.id.action_workout_pager_to_nav_workout_plan)
+        }
 
         collectionWorkoutsViewModel.dayListLiveData.observe(this as LifecycleOwner) { event ->
             val (position, days) = event.getContentIfNotHandled() ?: return@observe

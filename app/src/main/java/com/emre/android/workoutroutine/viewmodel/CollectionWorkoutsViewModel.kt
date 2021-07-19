@@ -6,16 +6,12 @@ import com.emre.android.workoutroutine.CalendarWorkout
 import com.emre.android.workoutroutine.data.AppDatabase
 import com.emre.android.workoutroutine.data.Event
 import com.emre.android.workoutroutine.data.model.Day
-import com.emre.android.workoutroutine.data.model.Exercise
-import com.emre.android.workoutroutine.data.model.Workout
-import com.emre.android.workoutroutine.data.model.WorkoutDayOfWeek
 import com.emre.android.workoutroutine.data.repository.ExerciseRepo
 import com.emre.android.workoutroutine.data.repository.WorkoutDayOfWeekRepo
 import com.emre.android.workoutroutine.data.repository.WorkoutRepo
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.addTo
-import io.reactivex.rxjava3.schedulers.Schedulers
 
 class CollectionWorkoutsViewModel(appDatabase: AppDatabase) : ViewModel() {
 
@@ -92,59 +88,6 @@ class CollectionWorkoutsViewModel(appDatabase: AppDatabase) : ViewModel() {
                 dayListLiveData.value =
                     Event(firstVisibleDayPosition to calendarWorkout.dayList)
                 updatedFutureDaysAtPosition += 20
-            }
-            .addTo(disposables)
-    }
-
-    fun subscribeNewWorkoutObservable(newWorkoutButtonObservable: Observable<Unit>) {
-        newWorkoutButtonObservable
-            .observeOn(Schedulers.single())
-            .subscribe {
-                val workoutId = workoutRepo.insertToDb(
-                    Workout(
-                        workoutName = "Strength Workout",
-                        workoutDateStart = "2021.03.01"
-                    )
-                )
-
-                val daysOfWeek = arrayOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
-                for (dayOfWeek in daysOfWeek) {
-                    workoutDayOfWeekRepo.insertToDb(
-                        WorkoutDayOfWeek(
-                            workoutId = workoutId,
-                            dayOfWeek = dayOfWeek
-                        )
-                    )
-                }
-
-                exerciseRepo.insertToDb(
-                    Exercise(
-                        workoutId = workoutId,
-                        exerciseName = "Jump rope",
-                        exerciseType = "based on set"
-                    )
-                )
-                exerciseRepo.insertToDb(
-                    Exercise(
-                        workoutId = workoutId,
-                        exerciseName = "Bodyweight Squats",
-                        exerciseType = "based on set"
-                    )
-                )
-                exerciseRepo.insertToDb(
-                    Exercise(
-                        workoutId = workoutId,
-                        exerciseName = "Bench Press",
-                        exerciseType = "based on set"
-                    )
-                )
-                exerciseRepo.insertToDb(
-                    Exercise(
-                        workoutId = workoutId,
-                        exerciseName = "Push Ups",
-                        exerciseType = "based on set"
-                    )
-                )
             }
             .addTo(disposables)
     }
