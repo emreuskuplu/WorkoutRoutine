@@ -8,7 +8,11 @@
         android:id="@+id/workout_pager"
         android:name="com.emre.android.workoutroutine.view.fragments.CollectionWorkoutFragment"
         android:label="fragment_workout"
-        tools:layout="@layout/fragment_workout" />
+        tools:layout="@layout/fragment_workout" >
+        <action
+            android:id="@+id/action_workout_pager_to_nav_workout_plan"
+            app:destination="@id/nav_workout_plan" />
+    </fragment>
     <fragment
         android:id="@+id/body_fragment"
         android:name="com.emre.android.workoutroutine.view.fragments.BodyFragment"
@@ -19,4 +23,6 @@
         android:name="com.emre.android.workoutroutine.view.fragments.HistoryFragment"
         android:label="fragment_history"
         tools:layout="@layout/fragment_history" />
+
+    <include app:graph="@navigation/nav_workout_plan"/>
 </navigation>

@@ -18,4 +18,15 @@
     <string name="add_new_workout">Add new workout</string>
     <string name="delete_workout">Are you sure to you want to delete this workout?</string>
     <string name="cancel">Cancel</string>
+    <string name="back_to_previous_page">Back to previous page.</string>
+    <string name="add_exercise">Add Exercise</string>
+    <string name="type_exercise_name">Exercise name</string>
+    <string name="exercise_type">Exercise Type</string>
+    <string name="based_on_set">Based on set</string>
+    <string name="based_on_time">Based on time</string>
+    <string name="based_on_set_description">You can save <font color='#76efca'>reps</font>, <font color='#76efca'>weight</font>,
+        <font color='#76efca'>rest</font>, values in your exercise set.</string>
+    <string name="based_on_time_description">You can save <font color='#76efca'>time</font> values in your exercise set.</string>
+    <string name="accept">ACCEPT</string>
+    <string name="exercise_1">Exercise 1</string>
 </resources>

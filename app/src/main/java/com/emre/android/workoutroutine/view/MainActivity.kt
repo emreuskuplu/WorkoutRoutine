@@ -1,16 +1,20 @@
 package com.emre.android.workoutroutine.view
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.get
 import androidx.core.view.size
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.emre.android.workoutroutine.R
 import com.emre.android.workoutroutine.databinding.ActivityMainBinding
 import com.emre.android.workoutroutine.view.popupwindows.MainPopupWindow
+import com.emre.android.workoutroutine.viewmodel.MainViewModel
 
 class MainActivity : AppCompatActivity() {
+    lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,6 +25,14 @@ class MainActivity : AppCompatActivity() {
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
         val popupWindow = MainPopupWindow(binding.mainActivity)
+        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        viewModel.bottomBarLiveData.observe(this, {
+            if (it == true) {
+                binding.bottomNavigationView.visibility = View.VISIBLE
+            } else {
+                binding.bottomNavigationView.visibility = View.GONE
+            }
+        })
 
         binding.bottomNavigationView.setupWithNavController(navController)
 
@@ -28,18 +40,24 @@ class MainActivity : AppCompatActivity() {
             binding.bottomNavigationView.menu.findItem(it.id).setEnabled(false)
         }
 
-        binding.bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
-            menuItem.isEnabled = false
+        binding.bottomNavigationView.setOnNavigationItemSelectedListener {
+            it.isEnabled = false
 
             for (i in 0 until binding.bottomNavigationView.menu.size) {
                 if (binding.bottomNavigationView.menu[i] !=
-                    binding.bottomNavigationView.menu.findItem(menuItem.itemId)
+                    binding.bottomNavigationView.menu.findItem(it.itemId)
                 ) {
                     binding.bottomNavigationView.menu[i].isEnabled = true
                 }
             }
 
-            navController.navigate(menuItem.itemId)
+            navController.popBackStack(R.id.body_fragment, true)
+            navController.popBackStack(R.id.history_fragment, true)
+            navController.navigate(it.itemId)
+            if (navController.currentDestination?.id == R.id.workout_pager) {
+                // It must be called after navigate. It is use for prevent multiple backstack of workout_pager
+                navController.popBackStack()
+            }
             true
         }
 
@@ -62,5 +80,11 @@ class MainActivity : AppCompatActivity() {
         popupWindow.binding.help.setOnClickListener {
             popupWindow.dismiss()
         }
+    }
+
+    override fun onUserInteraction() {
+        viewModel.onUserInteractionLiveData.value = Unit
+        super.onUserInteraction()
+
     }
 }

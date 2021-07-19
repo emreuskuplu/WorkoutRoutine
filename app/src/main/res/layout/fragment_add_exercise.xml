@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragment_add_exercise_CL"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true">
+
+    <ImageButton
+        android:id="@+id/backIB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/back_to_previous_page"
+        android:src="@drawable/ic_action_back"
+        app:layout_constraintBottom_toBottomOf="@id/add_exerciseTV"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/add_exerciseTV" />
+
+    <TextView
+        android:id="@+id/add_exerciseTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/rubik_regular"
+        android:text="@string/add_exercise"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
+        android:id="@+id/exerciseNameTextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="54dp"
+        android:layout_marginEnd="40dp"
+
+        android:hint="@string/type_exercise_name"
+        app:hintTextColor="@color/colorSecondaryVariant"
+        app:endIconMode="clear_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/add_exerciseTV">
+
+        <com.emre.android.workoutroutine.view.CustomTextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:text="@string/exercise_1"/>
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/exerciseTypeTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="68dp"
+        android:fontFamily="@font/rubik_regular"
+        android:text="@string/exercise_type"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/exerciseNameTextInputLayout" />
+
+    <RadioButton
+        android:id="@+id/basedOnSetRB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="16dp"
+        android:buttonTint="@drawable/selector_radio_button"
+        android:checked="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/exerciseTypeTV" />
+
+    <TextView
+        android:id="@+id/basedOnSetTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/rubik_regular"
+        android:text="@string/based_on_set"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@id/basedOnSetRB"
+        app:layout_constraintStart_toEndOf="@id/basedOnSetRB"
+        app:layout_constraintTop_toTopOf="@id/basedOnSetRB" />
+
+    <TextView
+        android:id="@+id/basedOnSetDescriptionTv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="34dp"
+        android:fontFamily="@font/rubik_light"
+        android:text="@string/based_on_set_description"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/basedOnSetTV"
+        app:layout_constraintTop_toBottomOf="@id/basedOnSetTV" />
+
+    <RadioButton
+        android:id="@+id/basedOnTimeRB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="42dp"
+        android:buttonTint="@drawable/selector_radio_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/basedOnSetDescriptionTv" />
+
+    <TextView
+        android:id="@+id/basedOnTimeTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/rubik_regular"
+        android:text="@string/based_on_time"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@id/basedOnTimeRB"
+        app:layout_constraintStart_toEndOf="@id/basedOnTimeRB"
+        app:layout_constraintTop_toTopOf="@id/basedOnTimeRB" />
+
+    <TextView
+        android:id="@+id/BasedOnTimeDescriptionTV"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="34dp"
+        android:fontFamily="@font/rubik_light"
+        android:text="@string/based_on_time_description"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/basedOnTimeTV"
+        app:layout_constraintTop_toBottomOf="@id/basedOnTimeTV" />
+
+    <Button
+        android:id="@+id/acceptButton"
+        android:layout_width="0dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/rubik_regular"
+        android:text="@string/accept"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
