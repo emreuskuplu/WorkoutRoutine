@@ -8,46 +8,46 @@
         android:id="@+id/delete_workout_message"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/delete_workout"
-        android:fontFamily="@font/rubik_regular"
-        android:textSize="15sp"
         android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
         android:layout_marginTop="28dp"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="@font/rubik_regular"
+        android:text="@string/delete_workout"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/cancel_button"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:text="@string/cancel"
-        android:textColor="@color/colorSecondaryVariant"
-        android:fontFamily="@font/rubik_regular"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:gravity="center_vertical"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintTop_toBottomOf="@id/delete_workout_message"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:fontFamily="@font/rubik_regular"
+        android:gravity="center_vertical"
+        android:text="@string/cancel"
+        android:textColor="@color/colorSecondaryVariant"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/delete_button"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/delete_workout_message" />
 
     <Button
         android:id="@+id/delete_button"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:text="@string/delete"
-        android:textColor="@color/colorSecondaryVariant"
-        android:fontFamily="@font/rubik_regular"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:gravity="center_vertical"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintTop_toBottomOf="@id/delete_workout_message"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:fontFamily="@font/rubik_regular"
+        android:gravity="center_vertical"
+        android:text="@string/delete"
+        android:textColor="@color/colorSecondaryVariant"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/delete_workout_message" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

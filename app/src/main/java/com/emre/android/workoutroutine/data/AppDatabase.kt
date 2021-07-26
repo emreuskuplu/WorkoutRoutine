@@ -15,12 +15,16 @@ import com.emre.android.workoutroutine.data.model.WorkoutDayOfWeek
 /**
  * https://developer.android.com/codelabs/kotlin-android-training-room-database#5
  */
-@Database(entities = [
-    Workout::class,
-    WorkoutDayOfWeek::class,
-    Exercise::class,
-    Set::class], version = 1, exportSchema = false)
-abstract class AppDatabase: RoomDatabase() {
+@Database(
+    entities = [
+        Workout::class,
+        WorkoutDayOfWeek::class,
+        Exercise::class,
+        Set::class],
+    version = 1,
+    exportSchema = false
+)
+abstract class AppDatabase : RoomDatabase() {
 
     abstract fun workoutDao(): WorkoutDao
     abstract fun workoutDayOfWeekDao(): WorkoutDayOfWeekDao
@@ -49,27 +53,3 @@ abstract class AppDatabase: RoomDatabase() {
         }
     }
 }
-
-
-/*
-        private var appDatabase: AppDatabase? = null
-
-        fun getInstance(applicationContext: Context): AppDatabase {
-            if (appDatabase == null) {
-                return appDatabase
-            } else {
-                appDatabase = Room
-                    .databaseBuilder(
-                        applicationContext,
-                        AppDatabase::class.java,
-                        "app-database"
-                    )
-                    .build()
-
-                return appDatabase
-            }
-        }
-
-    }
-
- */

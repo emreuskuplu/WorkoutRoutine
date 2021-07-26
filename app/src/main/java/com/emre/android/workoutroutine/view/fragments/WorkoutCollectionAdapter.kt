@@ -10,15 +10,17 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
  * FragmentStateAdapter is not destroyed when fragment destroyed.
  * dayListSize must be - 2 for preventing viewpager scrolls to beyond position + 2
  */
-class WorkoutCollectionAdapter(viewPagerFragmentActivity: FragmentActivity, private var dayListSize: Int) :
-    FragmentStateAdapter(viewPagerFragmentActivity) {
+class WorkoutCollectionAdapter(
+    viewPagerFragmentActivity: FragmentActivity,
+    private var dayListSize: Int
+) : FragmentStateAdapter(viewPagerFragmentActivity) {
 
     override fun getItemCount(): Int {
         return dayListSize - 2
     }
 
     override fun createFragment(position: Int): Fragment {
-        return WorkoutsFragment.newInstance(position + 2)
+        return WorkoutListFragment.newInstance(position + 2)
     }
 
     fun setItemCountSize(dayListSize: Int) {

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- https://developer.android.com/guide/topics/resources/color-list-resource.html -->
-    <item android:state_checked="true" android:color="@color/colorSecondaryVariant"/>
-    <item android:state_checked="false" android:color="@color/darkWhite"/>
+    <item android:color="@color/colorSecondaryVariant" android:state_checked="true" />
+    <item android:color="@color/darkWhite" android:state_checked="false" />
 </selector>

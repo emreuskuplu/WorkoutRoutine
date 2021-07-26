@@ -16,7 +16,7 @@ import com.emre.android.workoutroutine.view.popupwindows.EditDeletePopupWindow
 class WorkoutsAdapter(
     private val fragmentManager: FragmentManager,
     private val viewModelStoreOwner: ViewModelStoreOwner
-    ) : RecyclerView.Adapter<WorkoutsAdapter.WorkoutViewHolder>() {
+) : RecyclerView.Adapter<WorkoutsAdapter.WorkoutViewHolder>() {
 
     private var workoutList: MutableList<Pair<Workout, List<Exercise>>> = mutableListOf()
 
@@ -34,9 +34,7 @@ class WorkoutsAdapter(
      * it may throws IndexOutOfBoundsException.
      * So it uses the size condition.
      */
-    fun removeWorkoutByPositionAndUpdateWorkoutList(
-        position: Int, workoutListSize: Int
-    ) {
+    fun removeWorkoutByPositionAndUpdateWorkoutList(position: Int, workoutListSize: Int) {
         if (workoutListSize == this.workoutList.size) {
             this.workoutList.removeAt(position)
             notifyItemRemoved(position)
@@ -49,18 +47,23 @@ class WorkoutsAdapter(
         val popupWindow = EditDeletePopupWindow(parent)
 
         return WorkoutViewHolder(binding) { workoutMenu, position ->
-            popupWindow.showAsDropDown(workoutMenu, 0, -36)
-
-            popupWindow.binding.edit.setOnClickListener {
-                popupWindow.dismiss()
-            }
-
-            popupWindow.binding.delete.setOnClickListener {
-                val workoutId = workoutList[position].first.id
-                val deleteWorkoutDialog = DeleteWorkoutDialog(position, workoutId, workoutList.size, viewModelStoreOwner)
-
-                deleteWorkoutDialog.show(fragmentManager, "DeleteWorkout")
-                popupWindow.dismiss()
+            popupWindow.let {
+                it.showAsDropDown(workoutMenu, 0, -36)
+                it.binding.edit.setOnClickListener {
+                    popupWindow.dismiss()
+                }
+                it.binding.delete.setOnClickListener {
+                    val workoutId = workoutList[position].first.id
+                    val deleteWorkoutDialog =
+                        DeleteWorkoutDialog(
+                            position,
+                            workoutId,
+                            workoutList.size,
+                            viewModelStoreOwner
+                        )
+                    deleteWorkoutDialog.show(fragmentManager, "DeleteWorkout")
+                    popupWindow.dismiss()
+                }
             }
         }
     }
@@ -73,10 +76,11 @@ class WorkoutsAdapter(
         )
         val exerciseNames = workoutList[position].second.map { it.exerciseName }
         val exerciseNamesAdapter = ExerciseNamesAdapter(exerciseNames)
-
-        holder.binding.exerciseNamesRecyclerview.layoutManager = linearLayoutManagerVertical
-        holder.binding.exerciseNamesRecyclerview.adapter = exerciseNamesAdapter
-        holder.binding.workoutName.text = workoutList[position].first.workoutName
+        holder.binding.let {
+            it.exerciseNamesRecyclerview.layoutManager = linearLayoutManagerVertical
+            it.exerciseNamesRecyclerview.adapter = exerciseNamesAdapter
+            it.workoutName.text = workoutList[position].first.workoutName
+        }
     }
 
     override fun getItemCount(): Int {

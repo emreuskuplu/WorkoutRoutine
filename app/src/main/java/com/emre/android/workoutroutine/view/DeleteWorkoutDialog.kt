@@ -28,19 +28,15 @@ class DeleteWorkoutDialog(
         val binding = DialogDeleteWorkoutBinding.inflate(layoutInflater)
         val workoutsViewModel =
             ViewModelProvider(viewModelStoreOwner).get(WorkoutsViewModel::class.java)
-
         builder.setView(binding.root)
-
         binding.cancelButton.setOnClickListener {
             dismiss()
         }
-
         workoutsViewModel
             .subscribeDeleteWorkoutWithExercisesInside(binding.deleteButton.clicks().map {
                 dismiss()
                 (positionForRemoveWorkoutInList to workoutId) to workoutListSizeForConditionToRemoveItemFromAdapter
             })
-
         return builder.create()
     }
 }
