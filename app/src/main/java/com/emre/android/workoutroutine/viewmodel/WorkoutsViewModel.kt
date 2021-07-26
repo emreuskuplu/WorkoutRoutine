@@ -23,7 +23,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
  * When it sent after workouts removed, it must be called notifyItemRemoved instead of notifyDataSetChanged.
  * RecyclerView's remove animation will be broken if notifyDataSetChanged is called.
  */
-class WorkoutsViewModel(appDatabase: AppDatabase): ViewModel() {
+class WorkoutsViewModel(appDatabase: AppDatabase) : ViewModel() {
 
     private val disposables = CompositeDisposable()
     private val workoutRepo = WorkoutRepo(appDatabase)
@@ -43,7 +43,8 @@ class WorkoutsViewModel(appDatabase: AppDatabase): ViewModel() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { workoutsWithExercises ->
                 workoutListLiveData.value = workoutsWithExercises
-            }.addTo(disposables)
+            }
+            .addTo(disposables)
     }
 
     /**
@@ -63,11 +64,9 @@ class WorkoutsViewModel(appDatabase: AppDatabase): ViewModel() {
                 val positionForRemoveWorkoutInList =
                     positionForRemoveWorkoutInListAndWorkoutId.first
                 val workoutId = positionForRemoveWorkoutInListAndWorkoutId.second
-
                 workoutRepo.deleteInDb(workoutId)
                 workoutDayOfWeekRepo.deleteAllMatchWorkoutIdInDb(workoutId)
                 exerciseRepo.deleteAllMatchWorkoutIdInDb(workoutId)
-
                 positionForRemoveWorkoutInList to workoutListSize
             }
             .observeOn(AndroidSchedulers.mainThread())
@@ -75,6 +74,7 @@ class WorkoutsViewModel(appDatabase: AppDatabase): ViewModel() {
                 updateWorkoutListAfterWorkoutRemovedInDbLiveData.value =
                     positionForRemoveWorkoutInList to workoutListSize
 
-            }.addTo(deleteWorkoutWithExercisesDisposable)
+            }
+            .addTo(deleteWorkoutWithExercisesDisposable)
     }
 }

@@ -10,6 +10,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 class WorkoutRepo(appDatabase: AppDatabase) {
     private val workoutDao = appDatabase.workoutDao()
 
+    // TODO: This method will be used when the workout plan page is added
     fun insertToDb(workout: Workout): Long {
         return workoutDao.insert(workout)
     }
@@ -27,11 +28,11 @@ class WorkoutRepo(appDatabase: AppDatabase) {
             .observeOn(Schedulers.single())
             .map { workouts ->
                 val workoutListWithExercises = mutableListOf<Pair<Workout, List<Exercise>>>()
-
                 for (workout in workouts) {
-                    workoutListWithExercises.add(workout to exerciseRepo.getAllMatchWorkoutIdInDb(workout.id))
+                    workoutListWithExercises.add(
+                        workout to exerciseRepo.getAllMatchWorkoutIdInDb(workout.id)
+                    )
                 }
-
                 workoutListWithExercises
             }
     }

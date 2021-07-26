@@ -15,7 +15,8 @@ class HistoryFragment : Fragment() {
     private val binding get() = _binding ?: throw Exception("Binding is not found")
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHistoryBinding.inflate(inflater, container, false)

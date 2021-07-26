@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
@@ -8,12 +7,12 @@
     <View
         android:layout_width="2dp"
         android:layout_height="17dp"
-        android:background="@color/workoutCardGreen"/>
+        android:background="@color/workoutCardGreen" />
 
     <TextView
         android:id="@+id/exercise_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5.5dp"
-        android:fontFamily="@font/rubik_regular"/>
+        android:fontFamily="@font/rubik_regular" />
 </LinearLayout>

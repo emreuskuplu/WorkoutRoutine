@@ -27,7 +27,7 @@ import com.emre.android.workoutroutine.viewmodel.WorkoutsViewModelFactory
  * @property binding Instead using null check while each time using _binding,
  * binding property has null check itself so it can be used when using view instances.
  */
-class WorkoutsFragment : Fragment() {
+class WorkoutListFragment : Fragment() {
 
     private var _binding: FragmentWorkoutBinding? = null
     private val binding get() = _binding ?: throw Exception("Binding class is not found.")
@@ -42,11 +42,11 @@ class WorkoutsFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentWorkoutBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 
@@ -63,50 +63,49 @@ class WorkoutsFragment : Fragment() {
             ).get(WorkoutsViewModel::class.java)
         val collectionWorkoutsViewModel =
             ViewModelProvider(requireActivity()).get(CollectionWorkoutsViewModel::class.java)
-
         val workoutsAdapter = WorkoutsAdapter(parentFragmentManager, this)
         val day = collectionWorkoutsViewModel
             .getDays()[thirdVisibleDayPosition]
 
         Log.i(this.javaClass.simpleName, "Created fragment day: ${day.dayNumber}")
 
-        binding.workoutsRecyclerview.layoutManager = linearLayoutManagerVertical
-        binding.workoutsRecyclerview.adapter = workoutsAdapter
-
-        workoutsViewModel
-            .subscribeWorkoutsWithExercisesInDb(day)
-
-        /**
-         * It has condition for check to size of workout list in removedInDbLiveData to check to
-         * whether workout deleted in db.
-         * If the condition is false, then it will prevent to calling the notifyDataSetChanged for not
-         * break remove animation of recyclerview on the page the user sees.
-         */
-        workoutsViewModel
-            .workoutListLiveData
-            .observe(viewLifecycleOwner, { workoutList ->
+        workoutsViewModel.let {
+            it.subscribeWorkoutsWithExercisesInDb(day)
+            /**
+             * It has condition for check to size of workout list in removedInDbLiveData to check to
+             * whether workout deleted in db.
+             * If the condition is false, then it will prevent to calling the notifyDataSetChanged for not
+             * break remove animation of recyclerview on the page the user sees.
+             */
+            it.workoutListLiveData.observe(viewLifecycleOwner, { workoutList ->
                 val workoutListSizeBeforeRemoved = workoutsViewModel
-                    .updateWorkoutListAfterWorkoutRemovedInDbLiveData
-                    .value
-
+                    .updateWorkoutListAfterWorkoutRemovedInDbLiveData.value
                 if (workoutList.size >= workoutListSizeBeforeRemoved?.second ?: 0 || !isResumed) {
                     workoutsAdapter.setWorkoutList(workoutList)
                 }
             })
+            it.updateWorkoutListAfterWorkoutRemovedInDbLiveData.observe(
+                viewLifecycleOwner,
+                { (position, workoutListSize) ->
+                    val workoutNameToBeDeleted = workoutsAdapter.getWorkoutName(position)
+                    workoutsAdapter.removeWorkoutByPositionAndUpdateWorkoutList(
+                        position,
+                        workoutListSize
+                    )
+                    it.deleteWorkoutWithExercisesDisposable.clear()
+                    Toast.makeText(
+                        context,
+                        "$workoutNameToBeDeleted is deleted.",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            )
+        }
 
-        workoutsViewModel
-            .updateWorkoutListAfterWorkoutRemovedInDbLiveData
-            .observe(viewLifecycleOwner, { (position, workoutListSize) ->
-                val workoutNameToBeDeleted = workoutsAdapter.getWorkoutName(position)
-
-                workoutsAdapter.removeWorkoutByPositionAndUpdateWorkoutList(
-                    position,
-                    workoutListSize
-                )
-                workoutsViewModel.deleteWorkoutWithExercisesDisposable.clear()
-
-                Toast.makeText(context, "$workoutNameToBeDeleted is deleted.", Toast.LENGTH_LONG).show()
-            })
+        binding.workoutsRecyclerview.let {
+            it.layoutManager = linearLayoutManagerVertical
+            it.adapter = workoutsAdapter
+        }
     }
 
     override fun onDestroyView() {
@@ -120,8 +119,8 @@ class WorkoutsFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance(thirdVisibleDayPosition: Int): WorkoutsFragment {
-            val workoutsFragment = WorkoutsFragment()
+        fun newInstance(thirdVisibleDayPosition: Int): WorkoutListFragment {
+            val workoutsFragment = WorkoutListFragment()
             val args = Bundle()
 
             args.putInt("position", thirdVisibleDayPosition)

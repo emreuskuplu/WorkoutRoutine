@@ -8,6 +8,9 @@ class WorkoutPageChangeCallback(private val linearLayoutManager: LinearLayoutMan
 
     override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
         super.onPageScrolled(position, positionOffset, positionOffsetPixels)
-        linearLayoutManager.scrollToPositionWithOffset(position, (positionOffsetPixels * -0.1557).toInt())
+        linearLayoutManager.scrollToPositionWithOffset(
+            position,
+            (positionOffsetPixels * -0.1557).toInt()
+        )
     }
 }

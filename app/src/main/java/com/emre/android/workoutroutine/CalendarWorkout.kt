@@ -17,7 +17,6 @@ class CalendarWorkout {
 
     fun incrementFutureTwentyDays() {
         val futureTwentyDayList = mutableListOf<Day>()
-
         for (i in 0 until 20) {
             val dayNumber = calendarFuture.get(Calendar.DAY_OF_MONTH).toString()
             val dayName = calendarFuture.getDisplayName(
@@ -43,16 +42,13 @@ class CalendarWorkout {
                     dateFuture
                 )
             )
-
             calendarFuture.add(Calendar.DAY_OF_MONTH, 1)
         }
-
         dayList.addAll(futureTwentyDayList)
     }
 
     fun incrementPastTwentyDays() {
         val pastTwentyDayList = mutableListOf<Day>()
-
         for (i in 0 until 20) {
             val dayNumber = calendarPast.get(Calendar.DAY_OF_MONTH).toString()
             val dayName = calendarPast.getDisplayName(
@@ -78,10 +74,8 @@ class CalendarWorkout {
                     datePast
                 )
             )
-
             calendarPast.add(Calendar.DAY_OF_MONTH, -1)
         }
-
         dayList.addAll(0, pastTwentyDayList)
     }
 }

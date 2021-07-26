@@ -6,7 +6,7 @@ import android.widget.PopupWindow
 import com.emre.android.workoutroutine.R
 import com.emre.android.workoutroutine.databinding.WindowEditDeleteBinding
 
-class EditDeletePopupWindow(parent: ViewGroup): PopupWindow(parent.context) {
+class EditDeletePopupWindow(parent: ViewGroup) : PopupWindow(parent.context) {
     private val layoutInflater = LayoutInflater.from(parent.context)
     val binding = WindowEditDeleteBinding.inflate(layoutInflater, parent, false)
 

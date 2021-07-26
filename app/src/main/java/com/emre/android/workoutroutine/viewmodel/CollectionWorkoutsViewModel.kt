@@ -13,6 +13,7 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.addTo
 
+// TODO: Unused repo properties will be used when the workout plan page is added
 class CollectionWorkoutsViewModel(appDatabase: AppDatabase) : ViewModel() {
 
     private val disposables = CompositeDisposable()
@@ -58,9 +59,8 @@ class CollectionWorkoutsViewModel(appDatabase: AppDatabase) : ViewModel() {
                 thirdVisibleDayPosition >= updatedFutureDaysAtPosition + 15
             }
             .subscribe { thirdVisibleDayPosition ->
-                calendarWorkout.incrementFutureTwentyDays()
-
                 val firstVisibleDayPosition = thirdVisibleDayPosition - 2
+                calendarWorkout.incrementFutureTwentyDays()
                 dayListLiveData.value =
                     Event(firstVisibleDayPosition to calendarWorkout.dayList)
                 updatedFutureDaysAtPosition += 20
@@ -82,9 +82,8 @@ class CollectionWorkoutsViewModel(appDatabase: AppDatabase) : ViewModel() {
                 thirdVisibleDayPosition <= updatedPastDaysAtPosition - 15 && thirdVisibleDayPosition != 2
             }
             .subscribe { thirdVisibleDayPosition ->
-                calendarWorkout.incrementPastTwentyDays()
-
                 val firstVisibleDayPosition = thirdVisibleDayPosition + 18
+                calendarWorkout.incrementPastTwentyDays()
                 dayListLiveData.value =
                     Event(firstVisibleDayPosition to calendarWorkout.dayList)
                 updatedFutureDaysAtPosition += 20

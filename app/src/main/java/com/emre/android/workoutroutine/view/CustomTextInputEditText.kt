@@ -5,7 +5,8 @@ import android.util.AttributeSet
 import android.view.KeyEvent
 import com.google.android.material.textfield.TextInputEditText
 
-class CustomTextInputEditText(context: Context, attrs: AttributeSet) : TextInputEditText(context, attrs) {
+class CustomTextInputEditText(context: Context, attrs: AttributeSet) :
+    TextInputEditText(context, attrs) {
 
     override fun onEditorAction(actionCode: Int) {
         super.onEditorAction(actionCode)
