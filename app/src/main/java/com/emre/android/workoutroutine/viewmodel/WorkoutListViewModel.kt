@@ -23,7 +23,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
  * When it sent after workouts removed, it must be called notifyItemRemoved instead of notifyDataSetChanged.
  * RecyclerView's remove animation will be broken if notifyDataSetChanged is called.
  */
-class WorkoutsViewModel(appDatabase: AppDatabase) : ViewModel() {
+class WorkoutListViewModel(appDatabase: AppDatabase) : ViewModel() {
 
     private val disposables = CompositeDisposable()
     private val workoutRepo = WorkoutRepo(appDatabase)

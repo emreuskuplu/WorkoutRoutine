@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
 import com.emre.android.workoutroutine.R
 import com.emre.android.workoutroutine.databinding.DialogDeleteWorkoutBinding
-import com.emre.android.workoutroutine.viewmodel.WorkoutsViewModel
+import com.emre.android.workoutroutine.viewmodel.WorkoutListViewModel
 import com.jakewharton.rxbinding4.view.clicks
 
 /**
@@ -27,7 +27,7 @@ class DeleteWorkoutDialog(
         val builder = AlertDialog.Builder(requireActivity(), R.style.DialogTheme)
         val binding = DialogDeleteWorkoutBinding.inflate(layoutInflater)
         val workoutsViewModel =
-            ViewModelProvider(viewModelStoreOwner).get(WorkoutsViewModel::class.java)
+            ViewModelProvider(viewModelStoreOwner).get(WorkoutListViewModel::class.java)
         builder.setView(binding.root)
         binding.cancelButton.setOnClickListener {
             dismiss()

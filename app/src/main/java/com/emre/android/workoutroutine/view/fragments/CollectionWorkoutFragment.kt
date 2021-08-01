@@ -14,10 +14,10 @@ import androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL
 import com.emre.android.workoutroutine.R
 import com.emre.android.workoutroutine.data.AppDatabase
 import com.emre.android.workoutroutine.databinding.FragmentCollectionWorkoutBinding
-import com.emre.android.workoutroutine.view.lists.DaysScrollListener
-import com.emre.android.workoutroutine.view.lists.adapters.DaysAdapter
-import com.emre.android.workoutroutine.viewmodel.CollectionWorkoutsViewModel
-import com.emre.android.workoutroutine.viewmodel.CollectionWorkoutsViewModelFactory
+import com.emre.android.workoutroutine.view.lists.DayListScrollListener
+import com.emre.android.workoutroutine.view.lists.adapters.DayListAdapter
+import com.emre.android.workoutroutine.viewmodel.CollectionWorkoutListViewModel
+import com.emre.android.workoutroutine.viewmodel.CollectionWorkoutListViewModelFactory
 import com.emre.android.workoutroutine.viewmodel.MainViewModel
 
 /**
@@ -30,7 +30,7 @@ class CollectionWorkoutFragment : Fragment() {
 
     private var _binding: FragmentCollectionWorkoutBinding? = null
     private val binding get() = _binding ?: throw Exception("Binding class is not found.")
-    private lateinit var collectionWorkoutsViewModel: CollectionWorkoutsViewModel
+    private lateinit var collectionWorkoutListViewModel: CollectionWorkoutListViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,37 +39,40 @@ class CollectionWorkoutFragment : Fragment() {
     ): View {
         _binding =
             FragmentCollectionWorkoutBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val linearLayoutManager = LinearLayoutManager(context, HORIZONTAL, false)
-        val dayListAdapter = DaysAdapter()
-        val dayListScroll = DaysScrollListener(linearLayoutManager, requireContext())
+        val dayListAdapter = DayListAdapter()
+        val dayListScroll = DayListScrollListener(linearLayoutManager, requireContext())
         val thirdVisibleDayObservable = dayListScroll.thirdVisibleDayObservable
         val mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
-        mainViewModel.bottomBarLiveData.value = true
-        collectionWorkoutsViewModel =
+        mainViewModel.run {
+            toolbarLiveData.value = true
+            toolbarBackButtonLiveData.value = false
+            bottomBarLiveData.value = true
+        }
+        collectionWorkoutListViewModel =
             ViewModelProvider(
                 requireActivity(),
-                CollectionWorkoutsViewModelFactory(
+                CollectionWorkoutListViewModelFactory(
                     AppDatabase.getInstance(requireActivity().application)
                 )
-            ).get(CollectionWorkoutsViewModel::class.java)
-        val dayList = collectionWorkoutsViewModel.getDays()
+            ).get(CollectionWorkoutListViewModel::class.java)
+        val dayList = collectionWorkoutListViewModel.getDays()
         val workoutCollectionAdapter = WorkoutCollectionAdapter(
             this.requireActivity(),
             dayList.size
         )
         val workoutPageChangeCallback = WorkoutPageChangeCallback(linearLayoutManager)
         dayListAdapter.setDays(dayList)
-
-        collectionWorkoutsViewModel.let {
+        collectionWorkoutListViewModel.let {
             it.subscribeThirdVisibleDayObservable(thirdVisibleDayObservable)
-            it.monthLiveData.observe(this as LifecycleOwner) { month ->
-                binding.month.text = month
+            it.monthLiveData.observe(this as LifecycleOwner) { event ->
+                mainViewModel.toolbarTitleLiveData.value =
+                    event.getContentIfNotHandled() ?: return@observe
             }
             it.dayListLiveData.observe(this as LifecycleOwner) { event ->
                 val (position, days) = event.getContentIfNotHandled() ?: return@observe
@@ -89,13 +92,12 @@ class CollectionWorkoutFragment : Fragment() {
                 }
             }
         }
-
         binding.run {
             workoutPager.let {
                 it.adapter = workoutCollectionAdapter
                 it.registerOnPageChangeCallback(workoutPageChangeCallback)
                 it.setCurrentItem(
-                    collectionWorkoutsViewModel.viewPagerStartPosition,
+                    collectionWorkoutListViewModel.viewPagerStartPosition,
                     false
                 )
                 it.offscreenPageLimit = 2
@@ -115,9 +117,8 @@ class CollectionWorkoutFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        collectionWorkoutsViewModel.viewPagerStartPosition = binding.workoutPager.currentItem
+        collectionWorkoutListViewModel.viewPagerStartPosition = binding.workoutPager.currentItem
         _binding = null
-
         Log.i(this.javaClass.simpleName, "Destroyed")
     }
 }

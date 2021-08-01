@@ -5,14 +5,14 @@ import androidx.lifecycle.ViewModelProvider
 import com.emre.android.workoutroutine.data.AppDatabase
 
 @Suppress("UNCHECKED_CAST")
-class WorkoutsViewModelFactory(
+class CollectionWorkoutListViewModelFactory(
     private val appDatabase: AppDatabase
 ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(WorkoutsViewModel::class.java)) {
-            return WorkoutsViewModel(appDatabase) as T
+        if (modelClass.isAssignableFrom(CollectionWorkoutListViewModel::class.java)) {
+            return CollectionWorkoutListViewModel(appDatabase) as T
         }
-        throw IllegalArgumentException("Unknown WorkoutsViewModel")
+        throw IllegalArgumentException("Unknown CollectionWorkoutsViewModel")
     }
 }

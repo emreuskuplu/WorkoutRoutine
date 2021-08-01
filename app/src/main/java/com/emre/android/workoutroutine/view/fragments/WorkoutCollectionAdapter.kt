@@ -1,5 +1,6 @@
 package com.emre.android.workoutroutine.view.fragments
 
+import android.annotation.SuppressLint
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -23,6 +24,7 @@ class WorkoutCollectionAdapter(
         return WorkoutListFragment.newInstance(position + 2)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setItemCountSize(dayListSize: Int) {
         this.dayListSize = dayListSize - 2
         notifyDataSetChanged()

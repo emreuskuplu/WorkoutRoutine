@@ -1,5 +1,6 @@
 package com.emre.android.workoutroutine.view.lists.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,10 +10,11 @@ import com.emre.android.workoutroutine.R
 import com.emre.android.workoutroutine.data.model.Day
 import com.emre.android.workoutroutine.databinding.ItemDayBinding
 
-class DaysAdapter : RecyclerView.Adapter<DaysAdapter.DayViewHolder>() {
+class DayListAdapter : RecyclerView.Adapter<DayListAdapter.DayViewHolder>() {
 
     private var dayList = listOf<Day>()
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setDays(dayList: List<Day>) {
         this.dayList = dayList
         notifyDataSetChanged()

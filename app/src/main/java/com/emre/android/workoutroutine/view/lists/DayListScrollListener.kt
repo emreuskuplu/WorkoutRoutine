@@ -7,7 +7,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.emre.android.workoutroutine.R
-import com.emre.android.workoutroutine.view.lists.adapters.DaysAdapter
+import com.emre.android.workoutroutine.view.lists.adapters.DayListAdapter
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.subjects.PublishSubject
 
@@ -15,7 +15,7 @@ import io.reactivex.rxjava3.subjects.PublishSubject
  * @param linearLayoutManager This layout manager must be same with recyclerview layout manager for
  * get recyclerview item positions.
  */
-class DaysScrollListener(
+class DayListScrollListener(
     private val linearLayoutManager: LinearLayoutManager,
     context: Context
 ) : RecyclerView.OnScrollListener() {
@@ -43,7 +43,7 @@ class DaysScrollListener(
             for (i in 0..4) {
                 val viewHolder = recyclerView
                     .findViewHolderForAdapterPosition(firstCompletelyVisibleItemPosition + i)
-                        as DaysAdapter.DayViewHolder
+                        as DayListAdapter.DayViewHolder
 
                 viewHolder.binding.let {
                     if (i != 2) {

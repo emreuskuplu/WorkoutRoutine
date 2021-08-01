@@ -6,7 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.get
 import androidx.core.view.size
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.emre.android.workoutroutine.R
 import com.emre.android.workoutroutine.databinding.ActivityMainBinding
@@ -15,6 +18,7 @@ import com.emre.android.workoutroutine.viewmodel.MainViewModel
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var navController: NavController
     lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,10 +26,27 @@ class MainActivity : AppCompatActivity() {
         val binding = ActivityMainBinding.inflate(layoutInflater)
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        val navController = navHostFragment.navController
         val popupWindow = MainPopupWindow(binding.mainActivity)
         setContentView(binding.root)
+        navController = navHostFragment.navController
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        viewModel.toolbarLiveData.observe(this, {
+            if (it == true) {
+                binding.toolbar.visibility = View.VISIBLE
+            } else {
+                binding.toolbar.visibility = View.GONE
+            }
+        })
+        viewModel.toolbarBackButtonLiveData.observe(this, {
+            if (it == true) {
+                binding.backIB.visibility = View.VISIBLE
+            } else {
+                binding.backIB.visibility = View.GONE
+            }
+        })
+        viewModel.toolbarTitleLiveData.observe(this, {
+            binding.titleTV.text = it
+        })
         viewModel.bottomBarLiveData.observe(this, {
             if (it == true) {
                 binding.bottomNavigationView.visibility = View.VISIBLE
@@ -55,8 +76,11 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
             }
-            menuButton.setOnClickListener {
-                popupWindow.showAsDropDown(binding.menuButton, 0, -36)
+            menuIB.setOnClickListener {
+                popupWindow.showAsDropDown(binding.menuIB, 0, -36)
+            }
+            backIB.setOnClickListener {
+                navController.popBackStack()
             }
         }
         navController.currentDestination?.let {
