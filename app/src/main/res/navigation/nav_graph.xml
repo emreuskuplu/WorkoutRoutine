@@ -7,25 +7,25 @@
     <fragment
         android:id="@+id/workout_pager"
         android:name="com.emre.android.workoutroutine.view.fragments.CollectionWorkoutFragment"
-        android:label="fragment_workout"
-        tools:layout="@layout/fragment_workout" >
+        tools:layout="@layout/fragment_workout">
         <action
             android:id="@+id/action_workout_pager_to_fragment_add_exercise"
-            app:destination="@id/fragment_add_exercise" />
+            app:destination="@id/fragment_add_exercise"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
     </fragment>
     <fragment
         android:id="@+id/body_fragment"
         android:name="com.emre.android.workoutroutine.view.fragments.BodyFragment"
-        android:label="fragment_body"
         tools:layout="@layout/fragment_body" />
     <fragment
         android:id="@+id/history_fragment"
         android:name="com.emre.android.workoutroutine.view.fragments.HistoryFragment"
-        android:label="fragment_history"
         tools:layout="@layout/fragment_history" />
     <fragment
         android:id="@+id/fragment_add_exercise"
         android:name="com.emre.android.workoutroutine.view.fragments.AddExerciseFragment"
-        android:label="fragment_add_exercise"
         tools:layout="@layout/fragment_add_exercise" />
 </navigation>
