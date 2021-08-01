@@ -1,5 +1,6 @@
 package com.emre.android.workoutroutine.view.lists.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,13 +14,14 @@ import com.emre.android.workoutroutine.databinding.ItemWorkoutBinding
 import com.emre.android.workoutroutine.view.DeleteWorkoutDialog
 import com.emre.android.workoutroutine.view.popupwindows.EditDeletePopupWindow
 
-class WorkoutsAdapter(
+class WorkoutListAdapter(
     private val fragmentManager: FragmentManager,
     private val viewModelStoreOwner: ViewModelStoreOwner
-) : RecyclerView.Adapter<WorkoutsAdapter.WorkoutViewHolder>() {
+) : RecyclerView.Adapter<WorkoutListAdapter.WorkoutViewHolder>() {
 
     private var workoutList: MutableList<Pair<Workout, List<Exercise>>> = mutableListOf()
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setWorkoutList(workoutList: List<Pair<Workout, List<Exercise>>>) {
         this.workoutList = workoutList.toMutableList()
         notifyDataSetChanged()
@@ -75,7 +77,7 @@ class WorkoutsAdapter(
             false
         )
         val exerciseNames = workoutList[position].second.map { it.exerciseName }
-        val exerciseNamesAdapter = ExerciseNamesAdapter(exerciseNames)
+        val exerciseNamesAdapter = ExerciseNameListAdapter(exerciseNames)
         holder.binding.let {
             it.exerciseNamesRecyclerview.layoutManager = linearLayoutManagerVertical
             it.exerciseNamesRecyclerview.adapter = exerciseNamesAdapter
@@ -93,7 +95,7 @@ class WorkoutsAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
 
         init {
-            binding.menuButton.setOnClickListener {
+            binding.menuIB.setOnClickListener {
                 onMenuItemClicked(it, adapterPosition)
             }
         }

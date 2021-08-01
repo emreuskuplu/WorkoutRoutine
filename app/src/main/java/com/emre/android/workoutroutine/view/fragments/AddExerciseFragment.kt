@@ -5,9 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import com.emre.android.workoutroutine.databinding.FragmentAddExerciseBinding
 import com.emre.android.workoutroutine.view.hideKeyboard
 import com.emre.android.workoutroutine.viewmodel.MainViewModel
@@ -29,26 +27,25 @@ class AddExerciseFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
-        mainViewModel.let {
-            it.bottomBarLiveData.value = false
-            it.onUserInteractionLiveData.observe(this as LifecycleOwner) {
-                binding.exerciseNameTextInputLayout.editText?.let { editText ->
-                    editText.isFocusable = false
-                    editText.isFocusableInTouchMode = true
+        mainViewModel.run {
+            toolbarLiveData.value = true
+            toolbarBackButtonLiveData.value = true
+            toolbarTitleLiveData.value = "Add Exercise"
+            bottomBarLiveData.value = false
+            onUserInteractionLiveData.observe(viewLifecycleOwner) {
+                binding.exerciseNameTextInputLayout.editText?.let {
+                    it.isFocusable = false
+                    it.isFocusableInTouchMode = true
                 }
                 view.hideKeyboard()
             }
         }
-
         binding.let {
             it.basedOnSetRB.setOnClickListener {
                 binding.basedOnTimeRB.isChecked = false
             }
             it.basedOnTimeRB.setOnClickListener {
                 binding.basedOnSetRB.isChecked = false
-            }
-            it.backIB.setOnClickListener {
-                findNavController().popBackStack()
             }
         }
     }

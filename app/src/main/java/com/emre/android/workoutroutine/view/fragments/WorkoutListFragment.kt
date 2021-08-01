@@ -11,10 +11,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.emre.android.workoutroutine.data.AppDatabase
 import com.emre.android.workoutroutine.databinding.FragmentWorkoutBinding
-import com.emre.android.workoutroutine.view.lists.adapters.WorkoutsAdapter
-import com.emre.android.workoutroutine.viewmodel.CollectionWorkoutsViewModel
-import com.emre.android.workoutroutine.viewmodel.WorkoutsViewModel
-import com.emre.android.workoutroutine.viewmodel.WorkoutsViewModelFactory
+import com.emre.android.workoutroutine.view.lists.adapters.WorkoutListAdapter
+import com.emre.android.workoutroutine.viewmodel.CollectionWorkoutListViewModel
+import com.emre.android.workoutroutine.viewmodel.WorkoutListViewModel
+import com.emre.android.workoutroutine.viewmodel.WorkoutListViewModelFactory
 
 /**
  * @property thirdVisibleDayPosition (viewpager position + 2) It is in use for getting day in dayList.
@@ -57,13 +57,13 @@ class WorkoutListFragment : Fragment() {
         val workoutsViewModel =
             ViewModelProvider(
                 this,
-                WorkoutsViewModelFactory(
+                WorkoutListViewModelFactory(
                     AppDatabase.getInstance(requireActivity().application)
                 )
-            ).get(WorkoutsViewModel::class.java)
+            ).get(WorkoutListViewModel::class.java)
         val collectionWorkoutsViewModel =
-            ViewModelProvider(requireActivity()).get(CollectionWorkoutsViewModel::class.java)
-        val workoutsAdapter = WorkoutsAdapter(parentFragmentManager, this)
+            ViewModelProvider(requireActivity()).get(CollectionWorkoutListViewModel::class.java)
+        val workoutsAdapter = WorkoutListAdapter(parentFragmentManager, this)
         val day = collectionWorkoutsViewModel
             .getDays()[thirdVisibleDayPosition]
 

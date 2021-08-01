@@ -14,7 +14,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.addTo
 
 // TODO: Unused repo properties will be used when the workout plan page is added
-class CollectionWorkoutsViewModel(appDatabase: AppDatabase) : ViewModel() {
+class CollectionWorkoutListViewModel(appDatabase: AppDatabase) : ViewModel() {
 
     private val disposables = CompositeDisposable()
     private val calendarWorkout = CalendarWorkout()
@@ -24,7 +24,7 @@ class CollectionWorkoutsViewModel(appDatabase: AppDatabase) : ViewModel() {
     private var updatedFutureDaysAtPosition = 20
     private var updatedPastDaysAtPosition = 20
     var viewPagerStartPosition = 18
-    val monthLiveData = MutableLiveData<String>()
+    val monthLiveData = MutableLiveData<Event<String>>()
     var dayListLiveData = MutableLiveData<Event<Pair<Int, List<Day>>>>()
 
     init {
@@ -40,9 +40,11 @@ class CollectionWorkoutsViewModel(appDatabase: AppDatabase) : ViewModel() {
     fun subscribeThirdVisibleDayObservable(thirdVisibleDayObservable: Observable<Int>) {
         thirdVisibleDayObservable
             .subscribe { thirdVisibleDayPosition ->
-                monthLiveData.value = calendarWorkout
-                    .dayList[thirdVisibleDayPosition]
-                    .monthName
+                monthLiveData.value = Event(
+                    calendarWorkout
+                        .dayList[thirdVisibleDayPosition]
+                        .monthName
+                )
             }
             .addTo(disposables)
 
