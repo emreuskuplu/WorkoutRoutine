@@ -1,0 +1,42 @@
+Results of ktlint linter (version 0.40.0)
+See documentation on https://nvuillam.github.io/mega-linter/descriptors/kotlin_ktlint/
+-----------------------------------------------
+
+✅ [SUCCESS] app/src/androidTest/java/com/emre/android/workoutroutine/ExampleInstrumentedTest.kt - FIXED
+✅ [SUCCESS] app/src/main/java/com/emre/android/workoutroutine/CalendarWorkout.kt - FIXED
+✅ [SUCCESS] app/src/main/java/com/emre/android/workoutroutine/data/AppDatabase.kt - FIXED
+✅ [SUCCESS] app/src/main/java/com/emre/android/workoutroutine/data/Event.kt - FIXED
+✅ [SUCCESS] app/src/main/java/com/emre/android/workoutroutine/data/dao/ExerciseDao.kt - FIXED
+✅ [SUCCESS] app/src/main/java/com/emre/android/workoutroutine/data/dao/WorkoutDao.kt - FIXED
+✅ [SUCCESS] app/src/main/java/com/emre/android/workoutroutine/data/dao/WorkoutDayOfWeekDao.kt - FIXED
+✅ [SUCCESS] app/src/main/java/com/emre/android/workoutroutine/data/model/Day.kt - FIXED
+✅ [SUCCESS] app/src/main/java/com/emre/android/workoutroutine/data/model/Exercise.kt
+✅ [SUCCESS] app/src/main/java/com/emre/android/workoutroutine/data/model/Set.kt - FIXED
+✅ [SUCCESS] app/src/main/java/com/emre/android/workoutroutine/data/model/Workout.kt - FIXED
+✅ [SUCCESS] app/src/main/java/com/emre/android/workoutroutine/data/model/WorkoutDayOfWeek.kt
+✅ [SUCCESS] app/src/main/java/com/emre/android/workoutroutine/data/repository/ExerciseRepo.kt - FIXED
+✅ [SUCCESS] app/src/main/java/com/emre/android/workoutroutine/data/repository/WorkoutDayOfWeekRepo.kt - FIXED
+✅ [SUCCESS] app/src/main/java/com/emre/android/workoutroutine/data/repository/WorkoutRepo.kt - FIXED
+✅ [SUCCESS] app/src/main/java/com/emre/android/workoutroutine/view/CustomTextInputEditText.kt - FIXED
+✅ [SUCCESS] app/src/main/java/com/emre/android/workoutroutine/view/DeleteWorkoutDialog.kt - FIXED
+✅ [SUCCESS] app/src/main/java/com/emre/android/workoutroutine/view/MainActivity.kt - FIXED
+✅ [SUCCESS] app/src/main/java/com/emre/android/workoutroutine/view/ViewExtensions.kt - FIXED
+✅ [SUCCESS] app/src/main/java/com/emre/android/workoutroutine/view/fragments/AddExerciseFragment.kt - FIXED
+✅ [SUCCESS] app/src/main/java/com/emre/android/workoutroutine/view/fragments/BodyFragment.kt - FIXED
+✅ [SUCCESS] app/src/main/java/com/emre/android/workoutroutine/view/fragments/CollectionWorkoutFragment.kt - FIXED
+✅ [SUCCESS] app/src/main/java/com/emre/android/workoutroutine/view/fragments/HistoryFragment.kt - FIXED
+✅ [SUCCESS] app/src/main/java/com/emre/android/workoutroutine/view/fragments/WorkoutCollectionAdapter.kt - FIXED
+✅ [SUCCESS] app/src/main/java/com/emre/android/workoutroutine/view/fragments/WorkoutListFragment.kt - FIXED
+✅ [SUCCESS] app/src/main/java/com/emre/android/workoutroutine/view/fragments/WorkoutPageChangeCallback.kt - FIXED
+✅ [SUCCESS] app/src/main/java/com/emre/android/workoutroutine/view/lists/DayListScrollListener.kt - FIXED
+✅ [SUCCESS] app/src/main/java/com/emre/android/workoutroutine/view/lists/adapters/DayListAdapter.kt - FIXED
+✅ [SUCCESS] app/src/main/java/com/emre/android/workoutroutine/view/lists/adapters/ExerciseNameListAdapter.kt - FIXED
+✅ [SUCCESS] app/src/main/java/com/emre/android/workoutroutine/view/lists/adapters/WorkoutListAdapter.kt - FIXED
+✅ [SUCCESS] app/src/main/java/com/emre/android/workoutroutine/view/popupwindows/EditDeletePopupWindow.kt
+✅ [SUCCESS] app/src/main/java/com/emre/android/workoutroutine/view/popupwindows/MainPopupWindow.kt - FIXED
+✅ [SUCCESS] app/src/main/java/com/emre/android/workoutroutine/viewmodel/CollectionWorkoutListViewModel.kt - FIXED
+✅ [SUCCESS] app/src/main/java/com/emre/android/workoutroutine/viewmodel/CollectionWorkoutListViewModelFactory.kt - FIXED
+✅ [SUCCESS] app/src/main/java/com/emre/android/workoutroutine/viewmodel/MainViewModel.kt - FIXED
+✅ [SUCCESS] app/src/main/java/com/emre/android/workoutroutine/viewmodel/WorkoutListViewModel.kt - FIXED
+✅ [SUCCESS] app/src/main/java/com/emre/android/workoutroutine/viewmodel/WorkoutListViewModelFactory.kt - FIXED
+✅ [SUCCESS] app/src/test/java/com/emre/android/workoutroutine/ExampleUnitTest.kt - FIXED

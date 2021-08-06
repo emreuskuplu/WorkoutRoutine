@@ -1,0 +1,57 @@
+Results of xmllint linter (version 20912)
+See documentation on https://nvuillam.github.io/mega-linter/descriptors/xml_xmllint/
+-----------------------------------------------
+
+✅ [SUCCESS] .idea/codeStyles/Project.xml
+✅ [SUCCESS] .idea/codeStyles/codeStyleConfig.xml
+✅ [SUCCESS] .idea/compiler.xml
+✅ [SUCCESS] .idea/gradle.xml
+✅ [SUCCESS] .idea/jarRepositories.xml
+✅ [SUCCESS] .idea/misc.xml
+✅ [SUCCESS] .idea/vcs.xml
+✅ [SUCCESS] app/src/main/AndroidManifest.xml
+✅ [SUCCESS] app/src/main/res/anim/fade_in.xml
+✅ [SUCCESS] app/src/main/res/anim/fade_out.xml
+✅ [SUCCESS] app/src/main/res/anim/slide_in.xml
+✅ [SUCCESS] app/src/main/res/anim/slide_out.xml
+✅ [SUCCESS] app/src/main/res/drawable-anydpi/ic_action_back.xml
+✅ [SUCCESS] app/src/main/res/drawable-anydpi/ic_action_body.xml
+✅ [SUCCESS] app/src/main/res/drawable-anydpi/ic_action_history.xml
+✅ [SUCCESS] app/src/main/res/drawable-anydpi/ic_action_workout.xml
+✅ [SUCCESS] app/src/main/res/drawable-anydpi/ic_add_box.xml
+✅ [SUCCESS] app/src/main/res/drawable-anydpi/ic_archive.xml
+✅ [SUCCESS] app/src/main/res/drawable-anydpi/ic_card_navigate.xml
+✅ [SUCCESS] app/src/main/res/drawable-anydpi/ic_delete.xml
+✅ [SUCCESS] app/src/main/res/drawable-anydpi/ic_edit.xml
+✅ [SUCCESS] app/src/main/res/drawable-anydpi/ic_import_export.xml
+✅ [SUCCESS] app/src/main/res/drawable-anydpi/ic_info.xml
+✅ [SUCCESS] app/src/main/res/drawable-anydpi/ic_menu.xml
+✅ [SUCCESS] app/src/main/res/drawable-anydpi/ic_settings.xml
+✅ [SUCCESS] app/src/main/res/drawable-anydpi/ic_workouts.xml
+✅ [SUCCESS] app/src/main/res/drawable-v24/ic_launcher_foreground.xml
+✅ [SUCCESS] app/src/main/res/drawable/ic_launcher_background.xml
+✅ [SUCCESS] app/src/main/res/drawable/selector_bottom_nav_icon.xml
+✅ [SUCCESS] app/src/main/res/drawable/selector_radio_button.xml
+✅ [SUCCESS] app/src/main/res/drawable/selector_text.xml
+✅ [SUCCESS] app/src/main/res/drawable/shape_menu_item_pressed.xml
+✅ [SUCCESS] app/src/main/res/layout/activity_main.xml
+✅ [SUCCESS] app/src/main/res/layout/dialog_delete_workout.xml
+✅ [SUCCESS] app/src/main/res/layout/fragment_add_exercise.xml
+✅ [SUCCESS] app/src/main/res/layout/fragment_body.xml
+✅ [SUCCESS] app/src/main/res/layout/fragment_collection_workout.xml
+✅ [SUCCESS] app/src/main/res/layout/fragment_history.xml
+✅ [SUCCESS] app/src/main/res/layout/fragment_workout.xml
+✅ [SUCCESS] app/src/main/res/layout/item_day.xml
+✅ [SUCCESS] app/src/main/res/layout/item_exercise_name.xml
+✅ [SUCCESS] app/src/main/res/layout/item_workout.xml
+✅ [SUCCESS] app/src/main/res/layout/window_edit_delete.xml
+✅ [SUCCESS] app/src/main/res/layout/window_main.xml
+✅ [SUCCESS] app/src/main/res/menu/bottom_menu.xml
+✅ [SUCCESS] app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml
+✅ [SUCCESS] app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml
+✅ [SUCCESS] app/src/main/res/navigation/nav_graph.xml
+✅ [SUCCESS] app/src/main/res/values/colors.xml
+✅ [SUCCESS] app/src/main/res/values/dimen.xml
+✅ [SUCCESS] app/src/main/res/values/strings.xml
+✅ [SUCCESS] app/src/main/res/values/themes.xml
+✅ [SUCCESS] app/src/main/res/xml/backup_rules.xml

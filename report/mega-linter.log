@@ -1,0 +1,278 @@
+----------------------------------------------------------------------------------------------------
+------------------------------------------- Mega-Linter --------------------------------------------
+----------------------------------------------------------------------------------------------------
+ - Image Creation Date: 2021-08-04T02:18:24Z
+ - Image Revision: c5148f78
+ - Image Version: latest
+----------------------------------------------------------------------------------------------------
+The Mega-Linter documentation can be found at:
+ - https://nvuillam.github.io/mega-linter
+----------------------------------------------------------------------------------------------------
+GITHUB_REPOSITORY: emreuskuplu/WorkoutRoutine
+GITHUB_SHA: f42edfddac52223e5b7f7208344b6b4e47e4282d
+GITHUB_REF: refs/pull/25/merge
+GITHUB_TOKEN: ghs_jgaZuoBUMhdEycCPYlonwn3DHihhAt0E3W26
+GITHUB_RUN_ID: 1105464935
+
+
+[Activation] EDITORCONFIG_EDITORCONFIG_CHECKER has been set inactive, as none of these files has been found: ['.editorconfig']
+[Activation] JAVASCRIPT_ES has been set inactive, as none of these files has been found: ['.eslintrc.json', '.eslintrc.yml', '.eslintrc.yaml', '.eslintrc.js']
+[Activation] JSX_ESLINT has been set inactive, as none of these files has been found: ['.eslintrc.json', '.eslintrc.yml', '.eslintrc.yaml', '.eslintrc.js']
+[Activation] SWIFT_SWIFTLINT has been set inactive, as none of these files has been found: ['.swiftlint.yml']
+[Activation] TSX_ESLINT has been set inactive, as none of these files has been found: ['.eslintrc.json', '.eslintrc.yml', '.eslintrc.yaml', '.eslintrc.js']
+[Activation] TYPESCRIPT_ES has been set inactive, as none of these files has been found: ['.eslintrc.json', '.eslintrc.yml', '.eslintrc.yaml', '.eslintrc.js']
+Skipped linters: ANSIBLE_ANSIBLE_LINT, COPYPASTE_JSCPD, EDITORCONFIG_EDITORCONFIG_CHECKER, GROOVY_NPM_GROOVY_LINT, JAVASCRIPT_ES, JAVASCRIPT_PRETTIER, JSX_ESLINT, KUBERNETES_KUBEVAL, MARKDOWN_REMARK_LINT, SALESFORCE_SFDX_SCANNER_APEX, SALESFORCE_SFDX_SCANNER_AURA, SALESFORCE_SFDX_SCANNER_LWC, SPELL_CSPELL, SPELL_MISSPELL, SWIFT_SWIFTLINT, TSX_ESLINT, TYPESCRIPT_ES, TYPESCRIPT_PRETTIER
+To receive reports as email, please set variable EMAIL_REPORTER_EMAIL
+Listing all files in directory [/github/workspace], then filter with:
+- File extensions: , .R, .RMD, .Rmd, .bash, .c, .c++, .cc, .cdxml, .clj, .cljc, .cljs, .coffee, .cpp, .cs, .css, .cu, .cuh, .cxx, .dart, .dash, .edn, .env, .feature, .go, .graphql, .h, .h++, .hcl, .hh, .hpp, .htm, .html, .hxx, .java, .js, .json, .json5, .jsonc, .ksh, .kt, .kts, .lua, .md, .p6, .php, .pl, .pl6, .pm, .pm6, .pp, .proto, .ps1, .ps1xml, .psd1, .psm1, .psrc, .pssc, .py, .r, .raku, .rakumod, .rakutest, .rb, .rs, .rst, .saas, .scala, .scss, .sh, .smk, .sql, .t, .tex, .tf, .ts, .vb, .xml, .yaml, .yml
+- File names (regex): Dockerfile, Snakefile
+Kept [100] files on [177] found files
+
++----MATCHING LINTERS-------------------+---------------------+----------------+------------+
+| Descriptor | Linter                   | Criteria            | Matching files | Format/Fix |
++------------+--------------------------+---------------------+----------------+------------+
+| GIT        | git_diff                 |                     | project        | no         |
+| JSON       | jsonlint                 | .json               | 2              | no         |
+| JSON       | eslint-plugin-jsonc      | .json|.json5|.jsonc | 2              | yes        |
+| JSON       | v8r                      | .json               | 2              | no         |
+| JSON       | prettier                 | .json               | 2              | yes        |
+| KOTLIN     | ktlint                   | .kt|.kts            | 38             | yes        |
+| MARKDOWN   | markdownlint             | .md                 | 1              | yes        |
+| MARKDOWN   | markdown-link-check      | .md                 | 1              | no         |
+| MARKDOWN   | markdown-table-formatter | .md                 | 1              | yes        |
+| XML        | xmllint                  | .xml                | 53             | no         |
+| YAML       | prettier                 | .yml|.yaml          | 2              | yes        |
+| YAML       | yamllint                 | .yml|.yaml          | 2              | no         |
+| YAML       | v8r                      | .yml|.yaml          | 2              | no         |
++------------+--------------------------+---------------------+----------------+------------+
+
+
+[1m### Processed [GIT] files[0m
+- Using [git_diff v2.30.2] https://git-scm.com
+- Mega-Linter key: [GIT_GIT_DIFF]
+- Rules config: identified by [git_diff]
+[32m✅ Linted [GIT] files with [git_diff] successfully - (0.01s)[0m
+[Text Reporter] Generated TEXT report: /github/workspace/report/linters_logs/SUCCESS-GIT_GIT_DIFF.log
+
+[1m### Processed [JSON] files[0m
+- Using [jsonlint v1.6.3] https://github.com/zaach/jsonlint
+- Mega-Linter key: [JSON_JSONLINT]
+- Rules config: identified by [jsonlint]
+[jsonlint] .cspell.json - SUCCESS - 0 error(s)
+[jsonlint] .jscpd.json - SUCCESS - 0 error(s)
+[32m✅ Linted [JSON] files with [jsonlint] successfully - (0.53s)[0m
+[Text Reporter] Generated TEXT report: /github/workspace/report/linters_logs/SUCCESS-JSON_JSONLINT.log
+Unable to get version for linter [eslint-plugin-jsonc]
+npm list eslint-plugin-jsonc returned output: (1) /github/workspace
+└── (empty)
+
+
+Unable to extract version with regex re.compile('\\d+(\\.\\d+)+') from ERROR
+
+[1m### Processed [JSON] files[0m
+- Using [eslint-plugin-jsonc vERROR] https://ota-meshi.github.io/eslint-plugin-jsonc/
+- Mega-Linter key: [JSON_ESLINT_PLUGIN_JSONC]
+- Rules config: [.eslintrc-json.json]
+[eslint-plugin-jsonc] .cspell.json
+[eslint-plugin-jsonc] .jscpd.json
+[32m✅ Linted [JSON] files with [eslint-plugin-jsonc] successfully - (1.06s)[0m
+[Text Reporter] Generated TEXT report: /github/workspace/report/linters_logs/SUCCESS-JSON_ESLINT_PLUGIN_JSONC.log
+
+[1m### Processed [JSON] files[0m
+- Using [v8r v0.6.0] https://github.com/chris48s/v8r
+- Mega-Linter key: [JSON_V8R]
+- Rules config: identified by [v8r]
+[v8r] .cspell.json - SUCCESS - 0 error(s)
+[v8r] .jscpd.json - SUCCESS - 0 error(s)
+[32m✅ Linted [JSON] files with [v8r] successfully - (2.11s)[0m
+[Text Reporter] Generated TEXT report: /github/workspace/report/linters_logs/SUCCESS-JSON_V8R.log
+
+[1m### Processed [JSON] files[0m
+- Using [prettier v2.3.2] https://prettier.io/
+- Mega-Linter key: [JSON_PRETTIER]
+- Rules config: identified by [prettier]
+[36m[prettier] .cspell.json - SUCCESS - 0 error(s) - FIXED[0m
+[36m[prettier] .jscpd.json - SUCCESS - 0 error(s) - FIXED[0m
+[32m✅ Linted [JSON] files with [prettier] successfully - (1.09s)[0m
+[Text Reporter] Generated TEXT report: /github/workspace/report/linters_logs/SUCCESS-JSON_PRETTIER.log
+
+[1m### Processed [MARKDOWN] files[0m
+- Using [markdownlint v0.28.1] https://github.com/DavidAnson/markdownlint
+- Mega-Linter key: [MARKDOWN_MARKDOWNLINT]
+- Rules config: [.markdown-lint.json]
+[markdownlint] README.md
+[32m✅ Linted [MARKDOWN] files with [markdownlint] successfully - (0.26s)[0m
+[Text Reporter] Generated TEXT report: /github/workspace/report/linters_logs/SUCCESS-MARKDOWN_MARKDOWNLINT.log
+
+[1m### Processed [MARKDOWN] files[0m
+- Using [markdown-link-check v0.0.0] https://github.com/tcort/markdown-link-check
+- Mega-Linter key: [MARKDOWN_MARKDOWN_LINK_CHECK]
+- Rules config: [.markdown-link-check.json]
+[markdown-link-check] README.md - SUCCESS - 0 error(s)
+[32m✅ Linted [MARKDOWN] files with [markdown-link-check] successfully - (0.56s)[0m
+[Text Reporter] Generated TEXT report: /github/workspace/report/linters_logs/SUCCESS-MARKDOWN_MARKDOWN_LINK_CHECK.log
+
+[1m### Processed [MARKDOWN] files[0m
+- Using [markdown-table-formatter v1.1.0] https://www.npmjs.com/package/markdown-table-formatter
+- Mega-Linter key: [MARKDOWN_MARKDOWN_TABLE_FORMATTER]
+- Rules config: identified by [markdown-table-formatter]
+[markdown-table-formatter] README.md
+[32m✅ Linted [MARKDOWN] files with [markdown-table-formatter] successfully - (0.4s)[0m
+[Text Reporter] Generated TEXT report: /github/workspace/report/linters_logs/SUCCESS-MARKDOWN_MARKDOWN_TABLE_FORMATTER.log
+
+[1m### Processed [XML] files[0m
+- Using [xmllint v20912] http://xmlsoft.org/xmllint.html
+- Mega-Linter key: [XML_XMLLINT]
+- Rules config: identified by [xmllint]
+[xmllint] .idea/codeStyles/Project.xml - SUCCESS - 0 error(s)
+[xmllint] .idea/codeStyles/codeStyleConfig.xml - SUCCESS - 0 error(s)
+[xmllint] .idea/compiler.xml - SUCCESS - 0 error(s)
+[xmllint] .idea/gradle.xml - SUCCESS - 0 error(s)
+[xmllint] .idea/jarRepositories.xml - SUCCESS - 0 error(s)
+[xmllint] .idea/misc.xml - SUCCESS - 0 error(s)
+[xmllint] .idea/vcs.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/AndroidManifest.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/res/anim/fade_in.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/res/anim/fade_out.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/res/anim/slide_in.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/res/anim/slide_out.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/res/drawable-anydpi/ic_action_back.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/res/drawable-anydpi/ic_action_body.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/res/drawable-anydpi/ic_action_history.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/res/drawable-anydpi/ic_action_workout.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/res/drawable-anydpi/ic_add_box.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/res/drawable-anydpi/ic_archive.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/res/drawable-anydpi/ic_card_navigate.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/res/drawable-anydpi/ic_delete.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/res/drawable-anydpi/ic_edit.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/res/drawable-anydpi/ic_import_export.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/res/drawable-anydpi/ic_info.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/res/drawable-anydpi/ic_menu.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/res/drawable-anydpi/ic_settings.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/res/drawable-anydpi/ic_workouts.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/res/drawable-v24/ic_launcher_foreground.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/res/drawable/ic_launcher_background.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/res/drawable/selector_bottom_nav_icon.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/res/drawable/selector_radio_button.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/res/drawable/selector_text.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/res/drawable/shape_menu_item_pressed.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/res/layout/activity_main.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/res/layout/dialog_delete_workout.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/res/layout/fragment_add_exercise.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/res/layout/fragment_body.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/res/layout/fragment_collection_workout.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/res/layout/fragment_history.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/res/layout/fragment_workout.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/res/layout/item_day.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/res/layout/item_exercise_name.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/res/layout/item_workout.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/res/layout/window_edit_delete.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/res/layout/window_main.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/res/menu/bottom_menu.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/res/navigation/nav_graph.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/res/values/colors.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/res/values/dimen.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/res/values/strings.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/res/values/themes.xml - SUCCESS - 0 error(s)
+[xmllint] app/src/main/res/xml/backup_rules.xml - SUCCESS - 0 error(s)
+[32m✅ Linted [XML] files with [xmllint] successfully - (1.68s)[0m
+[Text Reporter] Generated TEXT report: /github/workspace/report/linters_logs/SUCCESS-XML_XMLLINT.log
+
+[1m### Processed [YAML] files[0m
+- Using [prettier v2.3.2] https://prettier.io/
+- Mega-Linter key: [YAML_PRETTIER]
+- Rules config: identified by [prettier]
+[prettier] .github/workflows/mega-linter.yml - SUCCESS - 0 error(s)
+[prettier] .mega-linter.yml - SUCCESS - 0 error(s)
+[32m✅ Linted [YAML] files with [prettier] successfully - (1.15s)[0m
+[Text Reporter] Generated TEXT report: /github/workspace/report/linters_logs/SUCCESS-YAML_PRETTIER.log
+
+[1m### Processed [YAML] files[0m
+- Using [yamllint v1.26.2] https://yamllint.readthedocs.io/
+- Mega-Linter key: [YAML_YAMLLINT]
+- Rules config: [.yaml-lint.yml]
+[yamllint] .github/workflows/mega-linter.yml - SUCCESS - 0 error(s)
+[yamllint] .mega-linter.yml - SUCCESS - 0 error(s)
+[32m✅ Linted [YAML] files with [yamllint] successfully - (0.37s)[0m
+[Text Reporter] Generated TEXT report: /github/workspace/report/linters_logs/SUCCESS-YAML_YAMLLINT.log
+
+[1m### Processed [YAML] files[0m
+- Using [v8r v0.6.0] https://github.com/chris48s/v8r
+- Mega-Linter key: [YAML_V8R]
+- Rules config: identified by [v8r]
+[v8r] .github/workflows/mega-linter.yml - SUCCESS - 0 error(s)
+[v8r] .mega-linter.yml - SUCCESS - 0 error(s)
+[32m✅ Linted [YAML] files with [v8r] successfully - (2.2s)[0m
+[Text Reporter] Generated TEXT report: /github/workspace/report/linters_logs/SUCCESS-YAML_V8R.log
+
+[1m### Processed [KOTLIN] files[0m
+- Using [ktlint v0.40.0] https://ktlint.github.io
+- Mega-Linter key: [KOTLIN_KTLINT]
+- Rules config: identified by [ktlint]
+[36m[ktlint] app/src/androidTest/java/com/emre/android/workoutroutine/ExampleInstrumentedTest.kt - SUCCESS - 0 error(s) - FIXED[0m
+[36m[ktlint] app/src/main/java/com/emre/android/workoutroutine/CalendarWorkout.kt - SUCCESS - 0 error(s) - FIXED[0m
+[36m[ktlint] app/src/main/java/com/emre/android/workoutroutine/data/AppDatabase.kt - SUCCESS - 0 error(s) - FIXED[0m
+[36m[ktlint] app/src/main/java/com/emre/android/workoutroutine/data/Event.kt - SUCCESS - 0 error(s) - FIXED[0m
+[36m[ktlint] app/src/main/java/com/emre/android/workoutroutine/data/dao/ExerciseDao.kt - SUCCESS - 0 error(s) - FIXED[0m
+[36m[ktlint] app/src/main/java/com/emre/android/workoutroutine/data/dao/WorkoutDao.kt - SUCCESS - 0 error(s) - FIXED[0m
+[36m[ktlint] app/src/main/java/com/emre/android/workoutroutine/data/dao/WorkoutDayOfWeekDao.kt - SUCCESS - 0 error(s) - FIXED[0m
+[36m[ktlint] app/src/main/java/com/emre/android/workoutroutine/data/model/Day.kt - SUCCESS - 0 error(s) - FIXED[0m
+[ktlint] app/src/main/java/com/emre/android/workoutroutine/data/model/Exercise.kt - SUCCESS - 0 error(s)
+[36m[ktlint] app/src/main/java/com/emre/android/workoutroutine/data/model/Set.kt - SUCCESS - 0 error(s) - FIXED[0m
+[36m[ktlint] app/src/main/java/com/emre/android/workoutroutine/data/model/Workout.kt - SUCCESS - 0 error(s) - FIXED[0m
+[ktlint] app/src/main/java/com/emre/android/workoutroutine/data/model/WorkoutDayOfWeek.kt - SUCCESS - 0 error(s)
+[36m[ktlint] app/src/main/java/com/emre/android/workoutroutine/data/repository/ExerciseRepo.kt - SUCCESS - 0 error(s) - FIXED[0m
+[36m[ktlint] app/src/main/java/com/emre/android/workoutroutine/data/repository/WorkoutDayOfWeekRepo.kt - SUCCESS - 0 error(s) - FIXED[0m
+[36m[ktlint] app/src/main/java/com/emre/android/workoutroutine/data/repository/WorkoutRepo.kt - SUCCESS - 0 error(s) - FIXED[0m
+[36m[ktlint] app/src/main/java/com/emre/android/workoutroutine/view/CustomTextInputEditText.kt - SUCCESS - 0 error(s) - FIXED[0m
+[36m[ktlint] app/src/main/java/com/emre/android/workoutroutine/view/DeleteWorkoutDialog.kt - SUCCESS - 0 error(s) - FIXED[0m
+[36m[ktlint] app/src/main/java/com/emre/android/workoutroutine/view/MainActivity.kt - SUCCESS - 0 error(s) - FIXED[0m
+[36m[ktlint] app/src/main/java/com/emre/android/workoutroutine/view/ViewExtensions.kt - SUCCESS - 0 error(s) - FIXED[0m
+[36m[ktlint] app/src/main/java/com/emre/android/workoutroutine/view/fragments/AddExerciseFragment.kt - SUCCESS - 0 error(s) - FIXED[0m
+[36m[ktlint] app/src/main/java/com/emre/android/workoutroutine/view/fragments/BodyFragment.kt - SUCCESS - 0 error(s) - FIXED[0m
+[36m[ktlint] app/src/main/java/com/emre/android/workoutroutine/view/fragments/CollectionWorkoutFragment.kt - SUCCESS - 0 error(s) - FIXED[0m
+[36m[ktlint] app/src/main/java/com/emre/android/workoutroutine/view/fragments/HistoryFragment.kt - SUCCESS - 0 error(s) - FIXED[0m
+[36m[ktlint] app/src/main/java/com/emre/android/workoutroutine/view/fragments/WorkoutCollectionAdapter.kt - SUCCESS - 0 error(s) - FIXED[0m
+[36m[ktlint] app/src/main/java/com/emre/android/workoutroutine/view/fragments/WorkoutListFragment.kt - SUCCESS - 0 error(s) - FIXED[0m
+[36m[ktlint] app/src/main/java/com/emre/android/workoutroutine/view/fragments/WorkoutPageChangeCallback.kt - SUCCESS - 0 error(s) - FIXED[0m
+[36m[ktlint] app/src/main/java/com/emre/android/workoutroutine/view/lists/DayListScrollListener.kt - SUCCESS - 0 error(s) - FIXED[0m
+[36m[ktlint] app/src/main/java/com/emre/android/workoutroutine/view/lists/adapters/DayListAdapter.kt - SUCCESS - 0 error(s) - FIXED[0m
+[36m[ktlint] app/src/main/java/com/emre/android/workoutroutine/view/lists/adapters/ExerciseNameListAdapter.kt - SUCCESS - 0 error(s) - FIXED[0m
+[36m[ktlint] app/src/main/java/com/emre/android/workoutroutine/view/lists/adapters/WorkoutListAdapter.kt - SUCCESS - 0 error(s) - FIXED[0m
+[ktlint] app/src/main/java/com/emre/android/workoutroutine/view/popupwindows/EditDeletePopupWindow.kt - SUCCESS - 0 error(s)
+[36m[ktlint] app/src/main/java/com/emre/android/workoutroutine/view/popupwindows/MainPopupWindow.kt - SUCCESS - 0 error(s) - FIXED[0m
+[36m[ktlint] app/src/main/java/com/emre/android/workoutroutine/viewmodel/CollectionWorkoutListViewModel.kt - SUCCESS - 0 error(s) - FIXED[0m
+[36m[ktlint] app/src/main/java/com/emre/android/workoutroutine/viewmodel/CollectionWorkoutListViewModelFactory.kt - SUCCESS - 0 error(s) - FIXED[0m
+[36m[ktlint] app/src/main/java/com/emre/android/workoutroutine/viewmodel/MainViewModel.kt - SUCCESS - 0 error(s) - FIXED[0m
+[36m[ktlint] app/src/main/java/com/emre/android/workoutroutine/viewmodel/WorkoutListViewModel.kt - SUCCESS - 0 error(s) - FIXED[0m
+[36m[ktlint] app/src/main/java/com/emre/android/workoutroutine/viewmodel/WorkoutListViewModelFactory.kt - SUCCESS - 0 error(s) - FIXED[0m
+[36m[ktlint] app/src/test/java/com/emre/android/workoutroutine/ExampleUnitTest.kt - SUCCESS - 0 error(s) - FIXED[0m
+[32m✅ Linted [KOTLIN] files with [ktlint] successfully - (71.78s)[0m
+[Text Reporter] Generated TEXT report: /github/workspace/report/linters_logs/SUCCESS-KOTLIN_KTLINT.log
+
++----SUMMARY--+--------------------------+---------+-------+--------+--------------+
+| Descriptor  | Linter                   |   Files | Fixed | Errors | Elapsed time |
++-------------+--------------------------+---------+-------+--------+--------------+
+| ✅ GIT      | git_diff                 | project |       |      0 |        0.01s |
+| ✅ JSON     | eslint-plugin-jsonc      |       2 |     0 |      0 |        1.06s |
+| ✅ JSON     | jsonlint                 |       2 |       |      0 |        0.53s |
+| ✅ JSON     | prettier                 |       2 |     2 |      0 |        1.09s |
+| ✅ JSON     | v8r                      |       2 |       |      0 |        2.11s |
+| ✅ KOTLIN   | ktlint                   |      38 |    35 |      0 |       71.78s |
+| ✅ MARKDOWN | markdownlint             |       1 |     0 |      0 |        0.26s |
+| ✅ MARKDOWN | markdown-link-check      |       1 |       |      0 |        0.56s |
+| ✅ MARKDOWN | markdown-table-formatter |       1 |     0 |      0 |         0.4s |
+| ✅ XML      | xmllint                  |      53 |       |      0 |        1.68s |
+| ✅ YAML     | prettier                 |       2 |     0 |      0 |        1.15s |
+| ✅ YAML     | v8r                      |       2 |       |      0 |         2.2s |
+| ✅ YAML     | yamllint                 |       2 |       |      0 |        0.37s |
++-------------+--------------------------+---------+-------+--------+--------------+
+
+[File.io Reporter] Reports are available at https://file.io/eqtLwHOiP75i
+Identified PR#25 from environment
+[GitHub Comment Reporter] Posted summary as comment on emreuskuplu/WorkoutRoutine #PR25
+[Updated Sources Reporter] copied 37 fixed source files in folder /github/workspace/report/updated_sources.
+Download it from artifacts then copy-paste it in your local repo to apply linters updates
+✅ Successfully linted all files without errors
