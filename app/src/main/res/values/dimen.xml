@@ -10,4 +10,20 @@
     <dimen name="window_textview_padding_drawable">16dp</dimen>
     <dimen name="window_icon_width">24dp</dimen>
     <dimen name="window_icon_height">24dp</dimen>
+    <dimen name="small_button_width">48dp</dimen>
+    <dimen name="small_button_height">48dp</dimen>
+    <dimen name="dialog_button_height">48dp</dimen>
+    <dimen name="large_button_height">52dp</dimen>
+    <dimen name="large_button_margin_start">16dp</dimen>
+    <dimen name="large_button_margin_end">16dp</dimen>
+    <dimen name="large_button_margin_bottom">20dp</dimen>
+    <dimen name="add_exercise_description_margin_top">4dp</dimen>
+    <dimen name="add_exercise_description_margin_end">34dp</dimen>
+    <dimen name="add_exercise_description_text_size">14sp</dimen>
+    <dimen name="add_exercise_description_title_text_size">15sp</dimen>
+    <dimen name="add_exercise_radio_button_margin_start">40dp</dimen>
+    <dimen name="edit_text_margin_start">40dp</dimen>
+    <dimen name="edit_text_margin_end">40dp</dimen>
+    <dimen name="fab_margin_end">16dp</dimen>
+    <dimen name="fab_margin_bottom">16dp</dimen>
 </resources>

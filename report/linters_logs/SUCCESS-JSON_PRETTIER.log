@@ -1,0 +1,6 @@
+Results of prettier linter (version 2.3.2)
+See documentation on https://nvuillam.github.io/mega-linter/descriptors/json_prettier/
+-----------------------------------------------
+
+✅ [SUCCESS] .cspell.json - FIXED
+✅ [SUCCESS] .jscpd.json - FIXED
